@@ -1,0 +1,262 @@
+﻿<!-- Header -->
+<header class="mb-2">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light px-3">
+        <button class="navbar-toggler nav-button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="" class="navbar-brand">
+            <img src="images/batman.svg" class="me-1" style="width: 55px; height: 55px;" alt="">
+        </a>
+        <div class="navbar-collapse collapse w-100" id="mynavbar">
+            <ul class="navbar-nav list-unstyled">
+                <li class="nav-item ">
+                    <a asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-home text-black" style="font-size: 20px;"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Basket" asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-basket-shopping text-black" style="font-size: 20px;"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link m-2 nav-icon"><i class="fa-solid fa-user-alt text-black" style="font-size: 20px;"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Register" asp-action="Logout" class="nav-link m-2 nav-icon me-auto"><i class="fa-solid fa-sign-out-alt text-danger" style="font-size: 20px;"></i></a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <!-- End of Navbar -->
+
+</header>
+<!-- End Header -->
+<!-- Main -->
+<main>
+    <!-- Hero -->
+    <div class="container">
+        <img src="images/icons8-bat-50.png" class="position-absolute" alt="" style="top: 160px ; right: 130px;">
+        <img src="images/icons8-bat-50.png" class="position-absolute" alt="" style="top: 250px ; right: 550px;">
+        <img src="images/icons8-bat-50.png" class="position-absolute" alt="" style="top: 560px ; right: 330px;">
+        <div class="row" style="height: 80vh;">
+            <div class="col-6 d-flex flex-column justify-content-center align-items-center text-center">
+                <h1 class="text-black fw-bold"><i class="fa-solid fa-computer me-3"></i>فروشگاه سخت افزار بتمن</h1>
+                <p class="h5 fw-bold">بهترین فروشگاه ایران تقدیم میکند.</p>
+            </div>
+            <div class="col-6">
+                <img src="images/45oled8-1200x1200-1.webp" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- End Hero -->
+    <!-- Products -->
+    <section class="mb-3 mt-5">
+        <div class="container">
+
+            <!-- Filters -->
+            <div class="row mb-5 pb-5">
+                <h1 class="mb-5">محصولات</h1>
+
+                <div class="col-6 d-flex justify-content-around">
+                    <form action="">
+                        <div class="btn-group">
+                            <input class="form-control" placeholder="نام محصول،مدل و ..." type="text">
+                            <button class="btn btn-danger">جستوجو</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-6 d-flex justify-content-around">
+                    <!-- Brand Filter -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            برند
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">کارت گرافیک</a></li>
+                            <li><a class="dropdown-item" href="#">لوازم جانبی</a></li>
+                            <li><a class="dropdown-item" href="#">cpu</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            دسته بندی ها
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">کارت گرافیک</a></li>
+                            <li><a class="dropdown-item" href="#">لوازم جانبی</a></li>
+                            <li><a class="dropdown-item" href="#">cpu</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            بازه قیمت
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">کارت گرافیک</a></li>
+                            <li><a class="dropdown-item" href="#">لوازم جانبی</a></li>
+                            <li><a class="dropdown-item" href="#">cpu</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Filters -->
+            <!-- Product List -->
+            <div class="row">
+
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card">
+                        <div class="p-3">
+                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
+                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p class="mb-0">قیمت : 30,000,000</p>
+                            <div class="text-center">
+                                <form method="post">
+                                    <div class="btn-group-sm">
+                                        <button class="btn btn-dark">افزودن به سبد</button>
+                                        <input placeholder="تعداد" min="1" style="width: 30%;" type="number">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card">
+                        <div class="p-3">
+                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
+                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p class="mb-0">قیمت : 30,000,000</p>
+                            <div class="text-center">
+                                <form method="post">
+                                    <div class="btn-group-sm">
+                                        <button class="btn btn-dark">افزودن به سبد</button>
+                                        <input placeholder="تعداد" style="width: 30%;" type="number">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card">
+                        <div class="p-3">
+                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
+                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p class="mb-0">قیمت : 30,000,000</p>
+                            <div class="text-center">
+                                <form method="post">
+                                    <div class="btn-group-sm">
+                                        <button class="btn btn-dark">افزودن به سبد</button>
+                                        <input placeholder="تعداد" style="width: 30%;" type="number">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card">
+                        <div class="p-3">
+                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
+                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p class="mb-0">قیمت : 30,000,000</p>
+                            <div class="text-center">
+                                <form method="post">
+                                    <div class="btn-group-sm">
+                                        <button class="btn btn-dark">افزودن به سبد</button>
+                                        <input placeholder="تعداد" style="width: 30%;" type="number">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card">
+                        <div class="p-3">
+                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
+                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p class="mb-0">قیمت : 30,000,000</p>
+                            <div class="text-center">
+                                <form method="post">
+                                    <div class="btn-group-sm">
+                                        <button class="btn btn-dark">افزودن به سبد</button>
+                                        <input placeholder="تعداد" style="width: 30%;" type="number">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="card">
+                        <div class="p-3">
+                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
+                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p class="mb-0">قیمت : 30,000,000</p>
+                            <div class="text-center">
+                                <form method="post">
+                                    <div class="btn-group-sm">
+                                        <button class="btn btn-dark">افزودن به سبد</button>
+                                        <input placeholder="تعداد" style="width: 30%;" type="number">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Product List -->
+        </div>
+    </section>
+    <!-- End Products -->
+</main>
+<!-- End Main -->
+<!-- Footer -->
+<footer>
+</footer>
+<!-- Footer -->

@@ -1,0 +1,56 @@
+﻿@model PhoneNumberDto;
+
+<!-- Form -->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-4">
+            <div class="card border border-3 border-dark">
+                <div class="card-header text-center border-bottom border-3 border-dark bg-dark-subtle">
+                    <p class="mb-0 fw-bold h4">ثبت نام</p>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login" asp-controller="Register" method="post">
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">شماره موبایل</label>
+                            <input id="PhoneNumber" type="text" class="form-control" asp-for="PhoneNumber">
+                        </div>
+                        <div class="d-grid mb-3">
+                            <button asp-action="SendVerifyCode" class="btn btn-outline-dark">ارسال کد تایید</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Form -->
+
+
+@* <script>
+    $(function () {
+        function SendVerifyCode(phoneNumber) {
+        if (!phoneNumber || phoneNumber.trim() === "") {
+            alert("شماره موبایل نباید خالی باشد");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/Register/SendVerifyCode",
+            data: { PhoneNumber: phoneNumber },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                } else {
+                    alert("خطا: " + response.message);
+                }
+            },
+            error: function (xhr) {
+                alert("ارسال کد تأیید با خطا مواجه شد.");
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    });  
+</script> *@

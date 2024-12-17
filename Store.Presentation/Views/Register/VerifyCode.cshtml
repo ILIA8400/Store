@@ -1,0 +1,26 @@
+﻿@model VerifyCodeDto;
+
+<!-- Form -->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-4">
+            <div class="card border border-3 border-dark">
+                <div class="card-header text-center border-bottom border-3 border-dark bg-dark-subtle">
+                    <p class="mb-0 fw-bold h4">تایید کد</p>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Code" class="form-label">کد تایید</label>
+                            <input asp-for="Code" type="text" class="form-control">
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-outline-dark">تایید</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Form -->
