@@ -13,7 +13,7 @@ namespace Store.Domain.Entities
         public string UserAddress { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

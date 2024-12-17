@@ -15,7 +15,7 @@ namespace Store.Domain.Entities
         public DateTime EndDate { get; set; }
         public string Code { get; set; }
         public int InvoiceId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

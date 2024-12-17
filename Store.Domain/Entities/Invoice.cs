@@ -14,7 +14,5 @@ namespace Store.Domain.Entities
         public decimal TotalAmount { get; set; }
         public int AddressId { get; set; }
         public Address Address { get; set; }
-        public int ShoppingCartId { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
     }
 }
