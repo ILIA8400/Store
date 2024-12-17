@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Store.BL.DTOs;
 using Store.DAL;
 using Store.DAL.Identity;
+using Store.Repositories.Wallet;
 using System.Net.NetworkInformation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,10 +20,22 @@ builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(PhoneNumberDto).Assembly));
 
 // Add DbContext
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreDbContext>();
 builder.Services.AddDbContext<StoreDbContext>(x => x.UseSqlServer("Server=.;Database=HardwareStore;User ID=sa; Trust Server Certificate=true; Password=ilia.1384;"));
 
 // Add Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreDbContext>();
+
+// Add Repositories
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
+
+// Add Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        policy => policy.WithOrigins("http://127.0.0.1:5500")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -43,7 +56,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Register}/{action=Index}/{id?}")
+    pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

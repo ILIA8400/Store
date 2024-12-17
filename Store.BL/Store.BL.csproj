@@ -11,6 +11,7 @@
     <Folder Include="Features\Product\Requests\" />
     <Folder Include="Features\Register\Handlers\Commands\" />
     <Folder Include="Features\Register\Requests\Commands\" />
+    <Folder Include="Search\" />
   </ItemGroup>
 
   <ItemGroup>
