@@ -12,7 +12,7 @@ using Store.DAL;
 namespace Store.DAL.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20241217113405_init")]
+    [Migration("20241217164552_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -243,15 +243,13 @@ namespace Store.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("AddressId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
                 });
@@ -320,15 +318,13 @@ namespace Store.DAL.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("DiscountId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Discounts");
                 });
@@ -350,17 +346,12 @@ namespace Store.DAL.Migrations
                     b.Property<int>("NumberOfItem")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvoiceId");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("Invoices");
                 });
@@ -442,15 +433,13 @@ namespace Store.DAL.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ShoppingCartId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -562,7 +551,9 @@ namespace Store.DAL.Migrations
                 {
                     b.HasOne("Store.DAL.Identity.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -582,7 +573,9 @@ namespace Store.DAL.Migrations
                 {
                     b.HasOne("Store.DAL.Identity.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -595,15 +588,7 @@ namespace Store.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Store.Domain.Entities.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Address");
-
-                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("Store.Domain.Entities.Product", b =>
@@ -629,7 +614,9 @@ namespace Store.DAL.Migrations
                 {
                     b.HasOne("Store.DAL.Identity.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

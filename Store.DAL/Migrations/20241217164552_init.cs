@@ -128,17 +128,17 @@ namespace Store.DAL.Migrations
                     UserAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Addresses", x => x.AddressId);
                     table.ForeignKey(
-                        name: "FK_Addresses_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Addresses_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -237,17 +237,17 @@ namespace Store.DAL.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Discounts", x => x.DiscountId);
                     table.ForeignKey(
-                        name: "FK_Discounts_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Discounts_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -259,17 +259,17 @@ namespace Store.DAL.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShoppingCarts", x => x.ShoppingCartId);
                     table.ForeignKey(
-                        name: "FK_ShoppingCarts_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_ShoppingCarts_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -331,8 +331,7 @@ namespace Store.DAL.Migrations
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfItem = table.Column<int>(type: "int", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    ShoppingCartId = table.Column<int>(type: "int", nullable: false)
+                    AddressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -342,12 +341,6 @@ namespace Store.DAL.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Invoices_ShoppingCarts_ShoppingCartId",
-                        column: x => x.ShoppingCartId,
-                        principalTable: "ShoppingCarts",
-                        principalColumn: "ShoppingCartId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -375,9 +368,9 @@ namespace Store.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_UserId1",
+                name: "IX_Addresses_UserId",
                 table: "Addresses",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -424,19 +417,14 @@ namespace Store.DAL.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounts_UserId1",
+                name: "IX_Discounts_UserId",
                 table: "Discounts",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Invoices_AddressId",
                 table: "Invoices",
                 column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_ShoppingCartId",
-                table: "Invoices",
-                column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
@@ -449,9 +437,9 @@ namespace Store.DAL.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCarts_UserId1",
+                name: "IX_ShoppingCarts_UserId",
                 table: "ShoppingCarts",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_WalletId",
@@ -495,6 +483,9 @@ namespace Store.DAL.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "ShoppingCarts");
+
+            migrationBuilder.DropTable(
                 name: "Transactions");
 
             migrationBuilder.DropTable(
@@ -502,9 +493,6 @@ namespace Store.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Addresses");
-
-            migrationBuilder.DropTable(
-                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "Brands");
