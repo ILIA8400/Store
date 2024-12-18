@@ -27,7 +27,7 @@ namespace Store.DAL
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Category>().HasOne(x=>x.Parent).WithOne().OnDelete(DeleteBehavior.NoAction);
+            //builder.Entity<Category>().HasOne(x=>x.Parent).WithOne().OnDelete(DeleteBehavior.NoAction);
             base.OnModelCreating(builder);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Store.BL.Features.Product.Requests.Queries;
 
 namespace Store.Presentation.Controllers
 {
@@ -12,19 +13,20 @@ namespace Store.Presentation.Controllers
             this.mediator = mediator;
         }
 
-        public Task<IActionResult> GetCategories()
+        //public Task<IActionResult> GetCategories()
+        //{
+
+        //}
+
+        //public Task<IActionResult> GetBrands(string Category)
+        //{
+
+        //}
+
+        public async Task<IActionResult> GetProducts()
         {
-
-        }
-
-        public Task<IActionResult> GetBrands(string Category)
-        {
-
-        }
-
-        public Task<IActionResult> GetProducts()
-        {
-
+            var request = new GetProductsRequest();
+            return Json(await mediator.Send(request));
         }
     }
 }

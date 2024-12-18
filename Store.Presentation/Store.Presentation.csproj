@@ -4,11 +4,8 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>0b8e2d76-24c1-40c7-936b-50781d320460</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Store.BL\Store.BL.csproj" />

@@ -10,7 +10,7 @@ namespace Store.Domain.Entities
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public Category? Parent { get; set; }
     }
 }

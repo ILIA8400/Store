@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Store.BL.DTOs;
 using Store.DAL;
 using Store.DAL.Identity;
+using Store.Repositories.Product;
 using Store.Repositories.Wallet;
 using System.Net.NetworkInformation;
 
@@ -19,20 +20,25 @@ builder.Services.AddMemoryCache();
 builder.Services.AddMediatR(cfg =>
      cfg.RegisterServicesFromAssembly(typeof(PhoneNumberDto).Assembly));
 
+// User Secret
+builder.Configuration.AddUserSecrets("0b8e2d76-24c1-40c7-936b-50781d320460");
+
 // Add DbContext
-builder.Services.AddDbContext<StoreDbContext>(x => x.UseSqlServer("Server=.;Database=HardwareStore;User ID=sa; Trust Server Certificate=true; Password=ilia.1384;"));
+string? connection = builder.Configuration.GetConnectionString("cnn");
+builder.Services.AddDbContext<StoreDbContext>(x => x.UseSqlServer(connection));
 
 // Add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreDbContext>();
 
 // Add Repositories
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 // Add Policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost",
-        policy => policy.WithOrigins("http://127.0.0.1:5500")
+        policy => policy.WithOrigins("https://localhost:44313")
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
