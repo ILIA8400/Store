@@ -285,7 +285,8 @@ namespace Store.DAL.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ParentId")
+                        .IsUnique();
 
                     b.ToTable("Categories");
                 });
@@ -558,9 +559,9 @@ namespace Store.DAL.Migrations
             modelBuilder.Entity("Store.Domain.Entities.Category", b =>
                 {
                     b.HasOne("Store.Domain.Entities.Category", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Store.Domain.Entities.Category", "ParentId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Parent");

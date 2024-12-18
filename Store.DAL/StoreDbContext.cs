@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Store.Domain.Entities;
 using Store.DAL.Identity;
+using System.Reflection.Emit;
 
 namespace Store.DAL
 {
@@ -10,6 +11,7 @@ namespace Store.DAL
         #region Ctor
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options) { }
         #endregion
+
         #region DbSets
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -22,5 +24,11 @@ namespace Store.DAL
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Address> Addresses { get; set; }
         #endregion
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Category>().HasOne(x=>x.Parent).WithOne().OnDelete(DeleteBehavior.NoAction);
+            base.OnModelCreating(builder);
+        }
     }
 }

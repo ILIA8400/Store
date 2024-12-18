@@ -12,7 +12,7 @@ using Store.DAL;
 namespace Store.DAL.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20241217164552_init")]
+    [Migration("20241218062037_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -288,7 +288,8 @@ namespace Store.DAL.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ParentId")
+                        .IsUnique();
 
                     b.ToTable("Categories");
                 });
@@ -561,9 +562,9 @@ namespace Store.DAL.Migrations
             modelBuilder.Entity("Store.Domain.Entities.Category", b =>
                 {
                     b.HasOne("Store.Domain.Entities.Category", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Store.Domain.Entities.Category", "ParentId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Parent");

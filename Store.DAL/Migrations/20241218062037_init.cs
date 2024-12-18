@@ -79,8 +79,7 @@ namespace Store.DAL.Migrations
                         name: "FK_Categories_Categories_ParentId",
                         column: x => x.ParentId,
                         principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CategoryId");
                 });
 
             migrationBuilder.CreateTable(
@@ -414,7 +413,8 @@ namespace Store.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_ParentId",
                 table: "Categories",
-                column: "ParentId");
+                column: "ParentId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Discounts_UserId",
