@@ -70,7 +70,7 @@ namespace Store.DAL.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: false)
+                    ParentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -413,8 +413,7 @@ namespace Store.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_ParentId",
                 table: "Categories",
-                column: "ParentId",
-                unique: true);
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Discounts_UserId",

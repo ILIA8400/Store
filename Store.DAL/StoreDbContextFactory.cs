@@ -13,8 +13,10 @@ namespace Shop.DAL
     {
         public StoreDbContext CreateDbContext(string[] args)
         {
+            string parsan = "Server=192.168.1.37;Database=HardwareStore;User ID=juniorDeveloper; Trust Server Certificate=true; Password=Aa@123456;";
+            string man = "Server=.;Database=HardwareStore;User ID=sa; Trust Server Certificate=true; Password=ilia.1384;";
             var optionsBuilder = new DbContextOptionsBuilder<StoreDbContext>();
-            optionsBuilder.UseSqlServer("Server=192.168.1.37;Database=HardwareStore;User ID=juniorDeveloper; Trust Server Certificate=true; Password=Aa@123456;");
+            optionsBuilder.UseSqlServer(man);
 
             return new StoreDbContext(optionsBuilder.Options);
         }

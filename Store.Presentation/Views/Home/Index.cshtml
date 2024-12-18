@@ -1,4 +1,16 @@
-﻿<!-- Header -->
+﻿@section Styles{
+    <style>
+    .product-card .card-body p {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    </style>
+}
+
+<!-- Header -->
 <header class="mb-2">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-light px-3">
@@ -88,31 +100,7 @@
             <!-- End Filters -->
 
             <!-- Product List -->
-            <div id="product_list" class="row">
-
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="card">
-                        <div class="p-3">
-                            <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                        </div>
-                        <div class="card-body text-center">
-                            <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                            <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between align-items-center">
-                            <p class="mb-0">قیمت : 30,000,000</p>
-                            <div class="text-center">
-                                <form method="post">
-                                    <div class="btn-group-sm">
-                                        <button class="btn btn-dark">افزودن به سبد</button>
-                                        <input placeholder="تعداد" min="1" style="width: 30%;" type="number">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+            <div id="product_list" class="row">                             
 
             </div>
             <!-- End Product List -->
