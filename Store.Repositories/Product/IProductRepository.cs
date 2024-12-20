@@ -10,5 +10,7 @@ namespace Store.Repositories.Product
 {
     public interface IProductRepository : IGenericRepository<ProductEntity>
     {
+        Task<List<ProductEntity>> GetProductByCategoryId(int categoryId);
+        Task<List<ProductEntity>> GetProductByCategoryAndBrand(int categoryId, int brandId);
     }
 }

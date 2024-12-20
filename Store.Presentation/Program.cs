@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Store.BL.DTOs;
 using Store.DAL;
 using Store.DAL.Identity;
+using Store.Repositories.Brand;
+using Store.Repositories.Category;
 using Store.Repositories.Product;
 using Store.Repositories.Wallet;
 using System.Net.NetworkInformation;
@@ -33,6 +35,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFramework
 // Add Repositories
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 
 // Add Policy
 builder.Services.AddCors(options =>

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Brand\Handlers\Commands\" />
+    <Folder Include="Features\Brand\Request\Commands\" />
+    <Folder Include="Features\Category\Handlers\Commands\" />
+    <Folder Include="Features\Category\Requests\Commands\" />
     <Folder Include="Features\Product\Handlers\Commands\" />
     <Folder Include="Features\Product\Requests\Commands\" />
     <Folder Include="Features\Register\Handlers\Commands\" />
