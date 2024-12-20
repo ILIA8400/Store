@@ -4,6 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Store.BL.Features.Register.Requests.Queries;
 using Store.DAL.Identity;
 using Store.Domain.Entities;
+using Store.Repositories.Basket;
 using Store.Repositories.Wallet;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,17 @@ namespace Store.BL.Features.Register.Handlers.Queries
         private readonly IMemoryCache memoryCache;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWalletRepository walletRepository;
+        private readonly IBasketRepository basketRepository;
 
-        public VerifyHandler(IMemoryCache memoryCache,UserManager<ApplicationUser> userManager,IWalletRepository walletRepository)
-        {
+        public VerifyHandler(
+            IMemoryCache memoryCache,UserManager<ApplicationUser> userManager,
+            IWalletRepository walletRepository,
+            IBasketRepository basketRepository)
+        { 
             this.memoryCache = memoryCache;
             this.userManager = userManager;
             this.walletRepository = walletRepository;
+            this.basketRepository = basketRepository;
         }
 
         public async Task Handle(VerifyRequest request, CancellationToken cancellationToken)
@@ -52,13 +58,21 @@ namespace Store.BL.Features.Register.Handlers.Queries
             }
             else
             {
+                newUser.PhoneNumberConfirmed = true;
                 var newWallet = new Wallet()
                 {
                     Balance = 0,
                     UserId = newUser.Id
                 };
 
+                var newBasket = new ShoppingCart
+                {
+                    TotalAmount = 0,
+                    UserId = newUser.Id
+                };
+
                 walletRepository.Add(newWallet);
+                basketRepository.Add(newBasket);
                 await walletRepository.SaveChange();
             }
         }
