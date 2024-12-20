@@ -19,7 +19,7 @@ namespace Store.DAL
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Product> Items { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Address> Addresses { get; set; }

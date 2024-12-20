@@ -1,5 +1,6 @@
-﻿using Store.Domain.Entities;
+﻿using ProductEntity = Store.Domain.Entities.Product;
 using Store.Repositories.Common;
+using Store.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,8 @@ namespace Store.Repositories.Basket
 {
     public interface IBasketRepository : IGenericRepository<ShoppingCart>
     {
-        Task AddToBasket(Item item,int number);
-        Task RemoveFromBasket(int itemId,int number = 1);
-        Task<decimal> GetTotalPrice(); 
+        Task AddToBasket(ProductEntity product,int quentity);
+        Task RemoveFromBasket(ProductEntity product);
         Task ClearBasket();
     }
 }

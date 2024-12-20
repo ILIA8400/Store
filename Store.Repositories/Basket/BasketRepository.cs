@@ -1,6 +1,7 @@
 ﻿using Store.DAL;
-using Store.Domain.Entities;
+using ProductEntity = Store.Domain.Entities.Product;
 using Store.Repositories.Common;
+using Store.Domain.Entities;
 
 namespace Store.Repositories.Basket
 {
@@ -13,9 +14,9 @@ namespace Store.Repositories.Basket
             this.storeDbContext = storeDbContext;
         }
 
-        public Task AddToBasket(Item item,int number)
+        public Task AddToBasket(ProductEntity product, int quentity)
         {
-            storeDbContext.Items.Add(item);
+            storeDbContext.Items.Where(x => x.AvaillableQuentity == 9);
         }
 
         public Task ClearBasket()
@@ -23,12 +24,7 @@ namespace Store.Repositories.Basket
             throw new NotImplementedException();
         }
 
-        public Task<decimal> GetTotalPrice()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveFromBasket(int itemId, int number = 1)
+        public Task RemoveFromBasket(ProductEntity product)
         {
             throw new NotImplementedException();
         }

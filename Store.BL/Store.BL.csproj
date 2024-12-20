@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Basket\Handlers\Commands\" />
+    <Folder Include="Features\Basket\Handlers\Queries\" />
+    <Folder Include="Features\Basket\Requests\Commands\" />
+    <Folder Include="Features\Basket\Requests\Queries\" />
     <Folder Include="Features\Brand\Handlers\Commands\" />
     <Folder Include="Features\Brand\Request\Commands\" />
     <Folder Include="Features\Category\Handlers\Commands\" />
