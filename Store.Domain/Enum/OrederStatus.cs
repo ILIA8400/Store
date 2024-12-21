@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Store.Domain.Enum
 {
     public enum OrederStatus
-    {
-        Success,
+    {       
         Reset,
+        Processing,
     }
 }

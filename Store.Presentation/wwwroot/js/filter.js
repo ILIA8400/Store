@@ -1,12 +1,13 @@
 ﻿// Get All Products
-$.get("https://localhost:44313/Product/GetProducts",
-        product => {
-
-            product.forEach(product => {
-                $("#product_list").append(productDiv(product))
-            });
-        }
-    );
+$.ajax({
+    type: "get",
+    url: "/Product/GetProducts",
+    success: function (product) {
+        product.forEach(p => {           
+            $("#product_list").append(productDiv(p))
+        });
+    }
+});
 
 // Get All Category Options
 $.ajax({
@@ -107,16 +108,17 @@ $("#price-select").on("change", function () {
 });
 
 
-
 // Functions :
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 function productDiv(product) {
+    console.log(product);
     return `<div class="col-md-6 col-lg-4 mb-5">
                         <div class="card h-100 product-card">
                             <div class="p-3">
-                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
+                                <img src="images/${product.medias[0].path}" class="card-img-top" alt="">
                             </div>
                             <div class="card-body text-center">
                                 <p class="card-title h5 mb-3">${product.productName}</p>

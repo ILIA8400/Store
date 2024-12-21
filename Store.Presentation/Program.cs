@@ -1,9 +1,11 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Store.BL.DTOs;
 using Store.DAL;
 using Store.DAL.Identity;
+using Store.Repositories.Basket;
 using Store.Repositories.Brand;
 using Store.Repositories.Category;
 using Store.Repositories.Product;
@@ -37,6 +39,7 @@ builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 // Add Policy
 builder.Services.AddCors(options =>

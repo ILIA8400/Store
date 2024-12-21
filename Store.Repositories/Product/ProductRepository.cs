@@ -27,13 +27,13 @@ namespace Store.Repositories.Product
                 if (brandId == 0)
                 {
                     // اگر هم برند صفر باشد، تمام محصولات لود شوند
-                    return await storeDbContext.Products
+                    return await storeDbContext.Products.Include(x => x.Medias)
                         .Include(p => p.Braand) // بارگذاری برند مرتبط
                         .ToListAsync();
                 }
 
                 // اگر فقط برند انتخاب شده باشد
-                var productsByBrand = await storeDbContext.Products
+                var productsByBrand = await storeDbContext.Products.Include(x => x.Medias)
                     .Include(p => p.Braand) // بارگذاری برند مرتبط
                     .Where(p => p.Braand.BrandId == brandId) // فیلتر محصولات براساس برند
                     .ToListAsync();
@@ -60,7 +60,7 @@ namespace Store.Repositories.Product
             // اگر برند صفر باشد فقط دسته‌بندی‌ها فیلتر می‌شوند
             if (brandId == 0)
             {
-                var productsByCategory = await storeDbContext.Products
+                var productsByCategory = await storeDbContext.Products.Include(x => x.Medias)
                     .Include(p => p.Braand) // بارگذاری برند مرتبط
                     .Where(p => categoryIds.Contains(p.CategoryId)) // فیلتر دسته‌بندی
                     .ToListAsync();
@@ -69,7 +69,7 @@ namespace Store.Repositories.Product
             }
 
             // فیلتر محصولات براساس دسته‌بندی و برند
-            var products = await storeDbContext.Products
+            var products = await storeDbContext.Products.Include(x => x.Medias)
                 .Include(p => p.Braand) // بارگذاری برند مرتبط
                 .Where(p => categoryIds.Contains(p.CategoryId) && p.Braand.BrandId == brandId) // فیلتر دسته‌بندی و برند
                 .ToListAsync();
@@ -99,12 +99,18 @@ namespace Store.Repositories.Product
             categoryIds.Add(categoryId); // اضافه کردن دسته‌بندی اصلی
 
             // 4. لود کردن محصولات بر اساس دسته‌بندی‌ها
-            var products = await storeDbContext.Products
+            var products = await storeDbContext.Products.Include(x=>x.Medias)
                 .Include(p => p.Braand) // لود برند مرتبط (در صورت نیاز)
                 .Where(p => categoryIds.Contains(p.CategoryId)) // فیلتر براساس دسته‌بندی‌ها
                 .ToListAsync();
 
             // 5. بازگرداندن لیست محصولات
+            return products;
+        }
+
+        public override async Task<IEnumerable<ProductEntity>> GetAll()
+        {
+            var products = await storeDbContext.Products.Include(x => x.Medias).ToListAsync();
             return products;
         }
     }

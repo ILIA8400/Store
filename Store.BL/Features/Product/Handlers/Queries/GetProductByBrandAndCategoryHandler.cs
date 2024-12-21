@@ -20,13 +20,22 @@ namespace Store.BL.Features.Product.Handlers.Queries
         }
         public async Task<List<ProductInfoRespose>> Handle(GetProductByBrandAndCategoryRequest request, CancellationToken cancellationToken)
         {
-            return (await productRepository.GetProductByCategoryAndBrand(request.CategoryId, request.BrandId))
+            var products = (await productRepository.GetProductByCategoryAndBrand(request.CategoryId, request.BrandId))
                 .Select(x=> new ProductInfoRespose
                 {
                     ProductName = x.ProductName,
                     Description = x.Description,
                     Price = x.Price,
+                    Medias = x.Medias
                 }).ToList();
+            foreach (var product in products)
+            {
+                foreach (var media in product.Medias)
+                {
+                    media.Product = null;
+                }
+            }
+            return products;
         }
     }
 }

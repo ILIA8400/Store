@@ -26,7 +26,16 @@ namespace Store.BL.Features.Product.Handlers.Queries
                  ProductName = p.ProductName,
                  Price = p.Price,
                  Description = p.Description,
+                 Medias = p.Medias
             }).ToList();
+
+            foreach (var product in products)
+            {
+                foreach (var media in product.Medias)
+                {
+                    media.Product = null;
+                }
+            }
 
             return products;
         }
