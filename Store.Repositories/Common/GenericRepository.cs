@@ -19,32 +19,32 @@ namespace Store.Repositories.Common
             _dbSet = storeDbContext.Set<TEntity>();
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             _dbSet.AddAsync(entity);
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             _dbSet.Remove(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public virtual async Task<TEntity> GetById(int id)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task SaveChange()
+        public virtual async Task SaveChange()
         {
             await storeDbContext.SaveChangesAsync();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             _dbSet.Update(entity);
         }
