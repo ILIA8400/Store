@@ -65,7 +65,7 @@ namespace Store.BL.Features.Register.Handlers.Queries
                     UserId = newUser.Id
                 };
 
-                var newBasket = new ShoppingCart
+                var newBasket = new Basket
                 {
                     TotalAmount = 0,
                     UserId = newUser.Id
