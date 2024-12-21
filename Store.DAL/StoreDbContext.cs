@@ -16,13 +16,15 @@ namespace Store.DAL
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Product> Items { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<InvoiceItem> invoiceItems { get; set; }
+        public DbSet<Media> Medias { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -10,6 +10,6 @@ namespace Store.Domain.Entities
     {
         public int BrandId { get; set; }
         public string BrandName { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

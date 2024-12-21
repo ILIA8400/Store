@@ -17,11 +17,11 @@ namespace Store.Domain.Entities
         public int BrandId { get; set; }
         public Brand Braand { get; set; }
         public int AvaillableQuentity {  get; set; }
-        public List<Media> Medias { get; set; }
-        public int DiscountId { get; set; }
-        public Discount Discount { get; set; }
-        public List<BasketItem> BasketItems { get; set; }
-        public List<InvoiceItem> InvoiceItems { get; set; }
+        public List<Media>? Medias { get; set; }
+        public int? DiscountId { get; set; }
+        public Discount? Discount { get; set; }
+        public List<BasketItem>? BasketItems { get; set; }
+        public List<InvoiceItem>? InvoiceItems { get; set; }
 
 
     }

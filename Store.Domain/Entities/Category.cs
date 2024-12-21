@@ -12,6 +12,6 @@ namespace Store.Domain.Entities
         public string CategoryName { get; set; }
         public int? ParentId { get; set; }
         public Category? Parent { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }
