@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace Store.Domain.Entities
 {
-    public class InvoiceItem
+    public class Media
     {
-        public int InvoiceItemId { get; set; }
+        public int MediaId { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        public int InvoiceId { get; set; }
-        public Invoice Invoice { get; set; }
-        public int Quentity { get; set; }
+        public string Path 
+        { 
+            get; 
+            set
+            {
+                Path = "~/images/" + value;
+            }
+        }
     }
 }

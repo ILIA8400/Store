@@ -15,5 +15,6 @@ namespace Store.Domain.Entities
         public string PostalCode { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+        public List<Invoice> Invoices { get; set; }
     }
 }
