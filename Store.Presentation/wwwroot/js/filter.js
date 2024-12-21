@@ -97,14 +97,11 @@ $("#price-select").on("change", function () {
         }
     });
 
-    // اگر هیچ محصولی موجود نبود، نمایش پیغام
     if ($("#product_list").find(".price:visible").length == 0) {
         if ($("#product_list").find(".no").length == 0)
-        // اضافه کردن پیغام "محصولی یافت نشد"
         $("#product_list").append(`<p class="no">محصولی یافت نشد</p>`);
     }
     else {
-        // ابتدا حذف پیغام قبلی اگر موجود باشد
         $("#product_list").find(".no").remove();
     }
 });
