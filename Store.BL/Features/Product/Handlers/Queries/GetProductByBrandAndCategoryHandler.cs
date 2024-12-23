@@ -23,6 +23,7 @@ namespace Store.BL.Features.Product.Handlers.Queries
             var products = (await productRepository.GetProductByCategoryAndBrand(request.CategoryId, request.BrandId))
                 .Select(x=> new ProductInfoRespose
                 {
+                    ProductId = x.ProductId,
                     ProductName = x.ProductName,
                     Description = x.Description,
                     Price = x.Price,

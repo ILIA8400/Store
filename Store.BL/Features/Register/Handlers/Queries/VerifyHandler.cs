@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasketEntity = Store.Domain.Entities.Basket;
 
 namespace Store.BL.Features.Register.Handlers.Queries
 {
@@ -18,16 +19,18 @@ namespace Store.BL.Features.Register.Handlers.Queries
     {
         private readonly IMemoryCache memoryCache;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IWalletRepository walletRepository;
         private readonly IBasketRepository basketRepository;
 
         public VerifyHandler(
-            IMemoryCache memoryCache,UserManager<ApplicationUser> userManager,
+            IMemoryCache memoryCache,UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,
             IWalletRepository walletRepository,
             IBasketRepository basketRepository)
         { 
             this.memoryCache = memoryCache;
             this.userManager = userManager;
+            this.signInManager = signInManager;
             this.walletRepository = walletRepository;
             this.basketRepository = basketRepository;
         }
@@ -39,42 +42,55 @@ namespace Store.BL.Features.Register.Handlers.Queries
             {
                 throw new InvalidOperationException("Invalid Code");
             }
-             // PhoneNumber
-            var newUser = new ApplicationUser
-            {
-                PhoneNumber = "09104641358",
-                UserName = "09104641358"
-            };
 
-            var result = await userManager.CreateAsync(newUser);
-            if(!result.Succeeded)
+
+            var user = await userManager.FindByNameAsync("09104641358");
+
+            if (user == null)
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                foreach (var item in result.Errors)
+                // PhoneNumber
+                var newUser = new ApplicationUser
                 {
-                    stringBuilder.AppendLine(item.Description);
+                    PhoneNumber = "09104641358",
+                    UserName = "09104641358"
+                };
+
+                var result = await userManager.CreateAsync(newUser);
+                if (!result.Succeeded)
+                {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    foreach (var item in result.Errors)
+                    {
+                        stringBuilder.AppendLine(item.Description);
+                    }
+                    throw new Exception(stringBuilder.ToString());
                 }
-                throw new Exception(stringBuilder.ToString());
+                else
+                {
+                    newUser.PhoneNumberConfirmed = true;
+                    var newWallet = new Wallet()
+                    {
+                        Balance = 0,
+                        UserId = newUser.Id
+                    };
+
+                    var newBasket = new BasketEntity
+                    {
+                        TotalAmount = 0,
+                        UserId = newUser.Id
+                    };
+
+                    walletRepository.Add(newWallet);
+                    basketRepository.Add(newBasket);
+                    await walletRepository.SaveChange();
+                }
             }
             else
             {
-                newUser.PhoneNumberConfirmed = true;
-                var newWallet = new Wallet()
-                {
-                    Balance = 0,
-                    UserId = newUser.Id
-                };
-
-                var newBasket = new Basket
-                {
-                    TotalAmount = 0,
-                    UserId = newUser.Id
-                };
-
-                walletRepository.Add(newWallet);
-                basketRepository.Add(newBasket);
-                await walletRepository.SaveChange();
+                await signInManager.SignInAsync(user,false);
             }
+            
+             
         }
     }
 }

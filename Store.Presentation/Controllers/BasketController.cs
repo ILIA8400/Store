@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Store.BL.DTOs;
+//using Store.BL.Features.Basket.Requests.Commands;
 
 namespace Store.Presentation.Controllers
 {
@@ -12,9 +14,14 @@ namespace Store.Presentation.Controllers
         }
 
         // Add to Basket
-        public Task<IActionResult> AddToBasket()
+        public Task<IActionResult> AddToBasket(BasketItemDto basketItemDto)
         {
-            throw new NotImplementedException();
+            basketItemDto.UserName = User.Identity.Name;
+            //var request = new AddToBasketRequestCommand()
+            //{
+            //    BasketItemDto = basketItemDto
+            //};
+            return null;
         }
 
         // Remove from Basket

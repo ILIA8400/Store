@@ -114,7 +114,6 @@ function numberWithCommas(x) {
 }
 
 function productDiv(product) {
-    console.log(product);
     return `<div class="col-md-6 col-lg-4 mb-5">
                         <div class="card h-100 product-card">
                             <div class="p-3">
@@ -127,10 +126,11 @@ function productDiv(product) {
                             <div class="card-footer d-flex justify-content-between align-items-center">
                                 <p class="mb-0"><span class="price">${numberWithCommas(product.price)}</span> تومان</p>
                                 <div class="text-center">
-                                    <form method="post">
+                                    <form method="post" asp-action="AddToBasket" asp-controller="Basket">
+                                        <input type="hidden" asp-for="ProductId" value="${product.productId}"/>
                                         <div class="btn-group-sm">
-                                            <button class="btn btn-dark">افزودن به سبد</button>
-                                            <input placeholder="تعداد" min="1" style="width: 30%;" type="number">
+                                            <button type="submit" class="btn btn-dark">افزودن به سبد</button>
+                                            <input placeholder="تعداد" min="1" style="width: 30%;" type="number" asp-for="Quentity">
                                         </div>
                                     </form>
                                 </div>

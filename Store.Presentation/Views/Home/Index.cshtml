@@ -10,6 +10,8 @@
     </style>
 }
 
+@model BasketItemDto;
+
 <!-- Header -->
 <header class="mb-2">
     <!-- Navbar -->
@@ -20,15 +22,37 @@
         <a href="" class="navbar-brand">
             <img src="images/batman.svg" class="me-1" style="width: 55px; height: 55px;" alt="">
         </a>
-        <div class="navbar-collapse collapse w-100" id="mynavbar">
-            <ul class="navbar-nav list-unstyled">
+        <div class="navbar-collapse collapse" id="mynavbar">
+            <ul class="navbar-nav w-100 list-unstyled">
                 <li class="nav-item ">
                     <a asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-home text-black" style="font-size: 20px;"></i></a>
                 </li>
 
-                <li class="nav-item">
-                    <a asp-controller="Basket" asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-basket-shopping text-black" style="font-size: 20px;"></i></a>
-                </li>
+
+                @if (User.Identities is not null && User.Identity.IsAuthenticated){
+                    <li class="nav-item">
+                        <a asp-controller="Basket" asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-basket-shopping text-black" style="font-size: 20px;"></i></a>
+                    </li>
+
+                    <li class="nav-item ms-auto d-flex align-items-center">
+                        <a href="" class="nav-link m-2 nav-icon me-auto"><i class="fa-solid fa-wallet" style="font-size: 20px; color: brown;"></i></a>
+                        <p class="mb-0 fw-bold">0 تومان</p>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <a href="" class="nav-link m-2 nav-icon"><i class="fa-solid fa-user-alt text-black" style="font-size: 20px;"></i></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link m-2 nav-icon me-auto" asp-action="Logout" asp-controller="Register"><i class="fa-solid fa-sign-out-alt text-danger" style="font-size: 20px;"></i></a>
+                    </li>
+                }
+                else{
+                    <li class="nav-item ms-auto">
+                        <a asp-controller="Register" asp-action="Index" class="m-2 btn btn-outline-primary ms-auto">ثبت نام یا ورود</a>
+                    </li>                 
+                }
+                
             </ul>
         </div>
 
@@ -99,7 +123,7 @@
 
             <!-- Product List -->
             <div id="product_list" class="row">                             
-
+                
             </div>
             <!-- End Product List -->
         </div>

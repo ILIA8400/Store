@@ -23,10 +23,11 @@ namespace Store.BL.Features.Product.Handlers.Queries
         {
             var products = (await productRepository.GetAll()).Select(p => new ProductInfoRespose
             {
-                 ProductName = p.ProductName,
-                 Price = p.Price,
-                 Description = p.Description,
-                 Medias = p.Medias
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                Price = p.Price,
+                Description = p.Description,
+                Medias = p.Medias
             }).ToList();
 
             foreach (var product in products)

@@ -34,7 +34,8 @@ namespace Store.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                return Json(ex);
+                // نمیتونه خطارو بگیره
+                return BadRequest("خطا داریم");
             }
         }
 
@@ -61,6 +62,8 @@ namespace Store.Presentation.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            var request = new LogoutRequest();
+            await mediator.Send(request);
             return RedirectToAction("Index", "Home");
         }
     }

@@ -24,33 +24,3 @@
     </div>
 </div>
 <!-- End Form -->
-
-
-@* <script>
-    $(function () {
-        function SendVerifyCode(phoneNumber) {
-        if (!phoneNumber || phoneNumber.trim() === "") {
-            alert("شماره موبایل نباید خالی باشد");
-            return;
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "/Register/SendVerifyCode",
-            data: { PhoneNumber: phoneNumber },
-            success: function (response) {
-                if (response.success) {
-                    alert(response.message);
-                } else {
-                    alert("خطا: " + response.message);
-                }
-            },
-            error: function (xhr) {
-                alert("ارسال کد تأیید با خطا مواجه شد.");
-                console.error(xhr.responseText);
-            }
-        });
-    }
-
-    });  
-</script> *@

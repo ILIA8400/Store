@@ -29,7 +29,7 @@ namespace Store.BL.Features.Register.Handlers.Queries
 
             try
             {
-                var result = await api.Send("2000660110", request.PhoneNumberDto.PhoneNumber, message);
+                //var result = await api.Send("2000660110", request.PhoneNumberDto.PhoneNumber, message);
                 memoryCache.Set(request.PhoneNumberDto.PhoneNumber, code, TimeSpan.FromSeconds(200));
                 return new VerifyCodeResponse() { Message = "Code" };
                 //if (result.Status == 200)
