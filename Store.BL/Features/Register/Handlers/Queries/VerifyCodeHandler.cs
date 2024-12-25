@@ -24,7 +24,7 @@ namespace Store.BL.Features.Register.Handlers.Queries
         {
             var api = new KavenegarApi("464D75325753483974524F484E494A6C4D50776C564C676B2B3859455664624E43384D6759706E476F69383D");
             Random rand = new Random();
-            var code = rand.Next(5000, 10000);
+            var code = rand.Next(5000, 10000); 
             string message = $"کد تایید شما : {code}";
 
             try

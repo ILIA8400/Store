@@ -16,5 +16,6 @@ namespace Store.Repositories.Basket
         Task RemoveFromBasket(ProductEntity product, string userId);
         Task ClearBasket(string userId);
         Task<BasketEntity> GetBasketsWithProducts(string userId);
+        Task<decimal> GetTotalPrice(string userId);
     }
 }

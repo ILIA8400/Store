@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Basket\Handlers\Commands\" />
-    <Folder Include="Features\Basket\Handlers\Queries\" />
-    <Folder Include="Features\Basket\Requests\Queries\" />
+    <Compile Remove="Search\**" />
+    <EmbeddedResource Remove="Search\**" />
+    <None Remove="Search\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Features\Brand\Handlers\Commands\" />
     <Folder Include="Features\Brand\Request\Commands\" />
     <Folder Include="Features\Category\Handlers\Commands\" />
@@ -18,7 +21,6 @@
     <Folder Include="Features\Product\Requests\Commands\" />
     <Folder Include="Features\Register\Handlers\Commands\" />
     <Folder Include="Features\Register\Requests\Commands\" />
-    <Folder Include="Search\" />
   </ItemGroup>
 
   <ItemGroup>

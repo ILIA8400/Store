@@ -126,11 +126,11 @@ function productDiv(product) {
                             <div class="card-footer d-flex justify-content-between align-items-center">
                                 <p class="mb-0"><span class="price">${numberWithCommas(product.price)}</span> تومان</p>
                                 <div class="text-center">
-                                    <form method="post" asp-action="AddToBasket" asp-controller="Basket">
-                                        <input type="hidden" asp-for="ProductId" value="${product.productId}"/>
+                                    <form method="post" action="Basket/AddToBasket">
+                                        <input type="hidden" name="ProductId" value="${product.productId}"/>
                                         <div class="btn-group-sm">
                                             <button type="submit" class="btn btn-dark">افزودن به سبد</button>
-                                            <input placeholder="تعداد" min="1" style="width: 30%;" type="number" asp-for="Quentity">
+                                            <input placeholder="تعداد" min="1" style="width: 30%;" type="number" name="Quentity">
                                         </div>
                                     </form>
                                 </div>
@@ -152,3 +152,5 @@ function getBrandsById(categoryId) {
         }
     });
 }
+
+

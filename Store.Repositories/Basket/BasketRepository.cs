@@ -63,10 +63,22 @@ namespace Store.Repositories.Basket
                 await storeDbContext.SaveChangesAsync();
             }
         }
+
         public async Task<BasketEntity> GetBasketsWithProducts(string userId)
         {
-            return await storeDbContext.Baskets.Include(x=>x.BasketItems).ThenInclude(x=>x.Product)
+            return await storeDbContext.Baskets.Include(x=>x.BasketItems).ThenInclude(x=>x.Product).ThenInclude(x=>x.Medias)
                 .Where(x=>x.UserId == userId).FirstOrDefaultAsync();
+        }
+
+        public async Task<decimal> GetTotalPrice(string userId)
+        {
+            decimal totalPrice = 0;
+            var basket = await storeDbContext.Baskets.Where(x => x.UserId == userId).Include(x => x.BasketItems).ThenInclude(x => x.Product).SingleOrDefaultAsync();
+            foreach (var basketItem in basket.BasketItems)
+            {
+                totalPrice += (basketItem.Quentity) * (basketItem.Product.Price);
+            }
+            return totalPrice;
         }
     }
 }

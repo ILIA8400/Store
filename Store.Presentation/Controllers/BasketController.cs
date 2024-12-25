@@ -1,45 +1,80 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Store.BL.DTOs;
+using Store.BL.Features.Basket.Requests.Commands;
+using Store.BL.Features.Basket.Requests.Queries;
+using System.Security.Claims;
 //using Store.BL.Features.Basket.Requests.Commands;
 
 namespace Store.Presentation.Controllers
 {
     public class BasketController : Controller
     {
+        private readonly IMediator mediator;
+
+        public BasketController(IMediator mediator)
+        {
+            this.mediator = mediator;
+        }
 
         // Display Basket
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var request = new GetBasketUserRequest()
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+            };
+            var response = await mediator.Send(request);
+            return View(response);
         }
 
         // Add to Basket
-        public Task<IActionResult> AddToBasket(BasketItemDto basketItemDto)
+        public async Task<IActionResult> AddToBasket(BasketItemDto basketItemDto)
         {
             basketItemDto.UserName = User.Identity.Name;
-            //var request = new AddToBasketRequestCommand()
-            //{
-            //    BasketItemDto = basketItemDto
-            //};
-            return null;
+            var request = new AddToBasketRequestCommand()
+            {
+                BasketItemDto = basketItemDto
+            };
+            await mediator.Send(request);
+            return RedirectToAction("Index", "Home");
         }
 
         // Remove from Basket
-        public Task<IActionResult> RemoveFromBasket()
+        public async Task<IActionResult> RemoveFromBasket(RemoveFromBasketDto removeFromBasketDto)
         {
-            throw new NotImplementedException();
-        }
-
-        // Total Price
-        public Task<IActionResult> GetTotalPrice()
-        {
-            throw new NotImplementedException();
+            removeFromBasketDto.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var request = new RemoveFromBasketRequestCommand()
+            {              
+                RemoveFromBasketDto = removeFromBasketDto
+            };
+            await mediator.Send(request);
+            return RedirectToAction("Index");
         }
 
         // Clear Basket
-        public Task<IActionResult> ClearBasket()
+        [HttpPost]
+        public async Task<IActionResult> ClearBasket(ClearBasketDto clearBasketDto)
         {
-            throw new NotImplementedException();
+            clearBasketDto.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var request = new ClearBasketCommandRequest
+            {
+                ClearBasketDto = clearBasketDto
+            };
+            await mediator.Send(request);
+
+            return RedirectToAction("Index");
         }
+
+        // Get Total Price
+        public async Task<decimal> GetTotalPrice()
+        {
+            var request = new GetTotalPriceRequest
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+            return await mediator.Send(request);
+        }
+       
     }
 }

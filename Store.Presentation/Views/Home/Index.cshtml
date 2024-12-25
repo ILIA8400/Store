@@ -31,7 +31,7 @@
 
                 @if (User.Identities is not null && User.Identity.IsAuthenticated){
                     <li class="nav-item">
-                        <a asp-controller="Basket" asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-basket-shopping text-black" style="font-size: 20px;"></i></a>
+                        <a asp-controller="Basket" asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-cart-shopping text-black" style="font-size: 20px;"></i></a>
                     </li>
 
                     <li class="nav-item ms-auto d-flex align-items-center">
@@ -124,7 +124,7 @@
             <!-- Product List -->
             <div id="product_list" class="row">                             
                 
-            </div>
+            </div>           
             <!-- End Product List -->
         </div>
     </section>
@@ -138,4 +138,4 @@
 
 @section Scripts{
     <script src="~/js/filter.js" asp-append-version="true"></script>
-}
+} 
