@@ -56,11 +56,22 @@
         <hr class="border border-2 border-secondary" />
         @if (Model.Basket.BasketItems.Count > 0){
             <div class="row mb-3">
-                <form asp-action="ClearBasket" asp-controller="Basket" method="post">
-                    <div>
-                        <button type="submit" class="btn btn-outline-danger">خالی کردن سبد</button>
-                    </div>
-                </form>              
+                <div class="col-6">
+                    <form asp-action="ClearBasket" asp-controller="Basket" method="post">
+                        <div>
+                            <button type="submit" class="btn btn-outline-danger">خالی کردن سبد</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-6">
+                    <form asp-action="Index" asp-controller="Address" method="get">
+                        <div>
+                            <button type="submit" class="btn btn-outline-success d-flex justify-content-center align-items-center"><i class="fa-solid fa-arrow-circle-left me-2"></i>مرحله بعد</button>
+                        </div>
+                    </form>
+                </div>
+                
             </div>
         }        
         <div class="row items">

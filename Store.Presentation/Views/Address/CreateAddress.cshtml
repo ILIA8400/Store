@@ -1,0 +1,69 @@
+﻿@model CreateAddressDto
+
+<!-- Header -->
+<header class="mb-2">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light px-3">
+        <button class="navbar-toggler nav-button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="" class="navbar-brand">
+            <img src="images/batman.svg" class="me-1" style="width: 55px; height: 55px;" alt="">
+        </a>
+        <div class="navbar-collapse collapse" id="mynavbar">
+            <ul class="navbar-nav list-unstyled w-100">
+                <li class="nav-item ">
+                    <a asp-action="Index" asp-controller="Home" class="nav-link m-2 nav-icon"><i class="fa-solid fa-home text-black" style="font-size: 20px;"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Basket" asp-action="Index" class="nav-link m-2 nav-icon"><i class="fa-solid fa-cart-shopping text-black" style="font-size: 20px;"></i></a>
+                </li>
+
+                <li class="nav-item ms-auto d-flex align-items-center">
+                    <a href="" class="nav-link m-2 nav-icon me-auto"><i class="fa-solid fa-wallet" style="font-size: 20px; color: brown;"></i></a>
+                    <p class="mb-0 fw-bold">0 تومان</p>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <a href="" class="nav-link m-2 nav-icon"><i class="fa-solid fa-user-alt text-black" style="font-size: 20px;"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link m-2 nav-icon me-auto" asp-action="Logout" asp-controller="Register"><i class="fa-solid fa-sign-out-alt text-danger" style="font-size: 20px;"></i></a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <!-- End of Navbar -->
+
+</header>
+<!-- End Header -->
+
+<!-- Main -->
+<main>
+    <div class="container mt-5">
+        <div class="row bg-secondary-subtle p-3 rounded mt-3">
+            <form class="row" method="post" asp-action="CreateAddress">
+                <div class="mb-3 col-2">
+                    <label asp-for="City" class="form-label">شهر</label>
+                    <input asp-for="City" class="form-control" type="text">
+                </div>
+                <div class="mb-3 col-2">
+                    <label asp-for="PostalCode" class="form-label">کد پستی</label>
+                    <input asp-for="PostalCode" class="form-control" type="text">
+                </div>
+                <div class="mb-3 col-8">
+                    <label asp-for="Address" class="form-label">ادرس</label>
+                    <input asp-for="Address" class="form-control" type="text">
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-danger">ثبت ادرس جدید</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>
+<!-- End Main -->

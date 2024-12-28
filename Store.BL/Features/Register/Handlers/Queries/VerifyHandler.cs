@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasketEntity = Store.Domain.Entities.Basket;
+using WalletEntity = Store.Domain.Entities.Wallet;
 
 namespace Store.BL.Features.Register.Handlers.Queries
 {
@@ -68,7 +69,7 @@ namespace Store.BL.Features.Register.Handlers.Queries
                 else
                 {
                     newUser.PhoneNumberConfirmed = true;
-                    var newWallet = new Wallet()
+                    var newWallet = new WalletEntity()
                     {
                         Balance = 0,
                         UserId = newUser.Id
@@ -87,7 +88,7 @@ namespace Store.BL.Features.Register.Handlers.Queries
             }
             else
             {
-                await signInManager.SignInAsync(user,false);
+                await signInManager.SignInAsync(user,true);
             }
             
              
