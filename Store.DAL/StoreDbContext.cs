@@ -30,7 +30,34 @@ namespace Store.DAL
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.Entity<Category>().HasOne(x=>x.Parent).WithOne().OnDelete(DeleteBehavior.NoAction);
+            //builder.Entity<Invoice>()
+            //    .HasOne(i => i.ApplicationUser)
+            //    .WithMany(u => u.Invoices)
+            //    .HasForeignKey(i => i.UserId)
+            //    .OnDelete(DeleteBehavior.SetNull); // یا NoAction
+
+            builder.Entity<Address>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.Addresses)
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Invoice>()
+                .HasOne(i => i.ApplicationUser)
+                .WithMany(u => u.Invoices)
+                .HasForeignKey(i => i.ApplicationUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Invoice>()
+                .HasOne(i => i.Address)
+                .WithMany(a => a.Invoices)
+                .HasForeignKey(i => i.AddressId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
             base.OnModelCreating(builder);
+
         }
     }
 }

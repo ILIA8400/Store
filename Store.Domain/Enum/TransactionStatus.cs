@@ -8,6 +8,7 @@ namespace Store.Domain.Enum
 {
     public enum TransactionStatus
     {
-        Success,
+        Failed,
+        Successed
     }
 }

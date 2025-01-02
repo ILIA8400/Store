@@ -12,8 +12,8 @@ using Store.DAL;
 namespace Store.DAL.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20241222073947_null-dec-basket")]
-    partial class nulldecbasket
+    [Migration("20250102191408_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,6 +169,9 @@ namespace Store.DAL.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DefaultAddressId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("DiscountId")
                         .HasColumnType("int");
@@ -364,9 +367,15 @@ namespace Store.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("DiscountCeiling")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("DiscountName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("DiscountPercentage")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -390,7 +399,8 @@ namespace Store.DAL.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<string>("AplicationUserId")
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateTime")
@@ -405,15 +415,11 @@ namespace Store.DAL.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("InvoiceId");
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("AplicationUserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("DiscountId");
 
@@ -518,8 +524,8 @@ namespace Store.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
-                    b.Property<long>("Amount")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
@@ -527,8 +533,8 @@ namespace Store.DAL.Migrations
                     b.Property<int>("TransactionStatus")
                         .HasColumnType("int");
 
-                    b.Property<byte>("TransactionType")
-                        .HasColumnType("tinyint");
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("int");
 
                     b.Property<int>("WalletId")
                         .HasColumnType("int");
@@ -627,7 +633,7 @@ namespace Store.DAL.Migrations
                     b.HasOne("Store.DAL.Identity.ApplicationUser", "User")
                         .WithMany("Addresses")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -677,12 +683,14 @@ namespace Store.DAL.Migrations
                     b.HasOne("Store.Domain.Entities.Address", "Address")
                         .WithMany("Invoices")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Store.DAL.Identity.ApplicationUser", "AplicationUser")
+                    b.HasOne("Store.DAL.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("Invoices")
-                        .HasForeignKey("AplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Store.Domain.Entities.Discount", "Discount")
                         .WithMany()
@@ -690,7 +698,7 @@ namespace Store.DAL.Migrations
 
                     b.Navigation("Address");
 
-                    b.Navigation("AplicationUser");
+                    b.Navigation("ApplicationUser");
 
                     b.Navigation("Discount");
                 });

@@ -113,5 +113,17 @@ namespace Store.Repositories.Product
             var products = await storeDbContext.Products.Include(x => x.Medias).ToListAsync();
             return products;
         }
+
+        public async Task ReducingTheInventoryOfPurchasedProducts(string userId)
+        {
+            var basketWithProducts = await storeDbContext.Baskets.Where(x => x.UserId == userId).Include(x => x.BasketItems)
+                .ThenInclude(x => x.Product).SingleOrDefaultAsync();
+
+            foreach (var item in basketWithProducts.BasketItems)
+            {
+                item.Product.AvaillableQuentity = item.Product.AvaillableQuentity - item.Quentity;
+            }
+            storeDbContext.SaveChanges();
+        }
     }
 }

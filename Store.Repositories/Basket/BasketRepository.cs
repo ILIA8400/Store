@@ -80,5 +80,20 @@ namespace Store.Repositories.Basket
             }
             return totalPrice;
         }
+
+        public async Task<int> GetTotalNumberOfProducts(string userId)
+        {
+            var basketUser = await storeDbContext.Baskets.Where(x => x.UserId == userId).Include(x => x.BasketItems)
+                .SingleOrDefaultAsync();
+
+            if (basketUser == null) throw new Exception("User Not Have Basket !!!");
+
+            int itemsCount = 0;
+            foreach (var item in basketUser.BasketItems)
+            {
+                itemsCount += item.Quentity;
+            }
+            return itemsCount;
+        }    
     }
 }

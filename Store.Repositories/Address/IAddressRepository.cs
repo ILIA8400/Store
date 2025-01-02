@@ -12,5 +12,6 @@ namespace Store.Repositories.Address
     public interface IAddressRepository : IGenericRepository<AddressEntity>
     {
         Task<List<AddressEntity>> GetAllAddressUser(string userId);
+        Task<int> GetDefaultAddressIdOfUser(string userId);
     }
 }

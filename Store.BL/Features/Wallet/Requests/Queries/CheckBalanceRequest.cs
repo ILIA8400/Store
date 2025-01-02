@@ -10,5 +10,7 @@ namespace Store.BL.Features.Wallet.Requests.Queries
 {
     public class CheckBalanceRequest : IRequest<CheckBalanceResponse>
     {
+        public string UserId { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 }

@@ -13,8 +13,8 @@ namespace Store.Domain.Entities
         public int WalletId { get; set; }
         public Wallet Wallet { get; set; }
         public TransactionStatus TransactionStatus { get; set; }
-        public byte TransactionType { get; set; }
-        public long Amount { get; set; }
+        public int TransactionType { get; set; }
+        public decimal Amount { get; set; }
         public DateTime DateTime { get; set; }
     }
 }

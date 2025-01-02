@@ -1,6 +1,7 @@
 ﻿using Store.DAL.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Store.Domain.Entities
         public int? DiscountId { get; set; }
         public Discount? Discount { get; set; }
         public List<InvoiceItem> InvoiceItems { get; set; }
-        public string UserId { get; set; }
-        public ApplicationUser AplicationUser { get; set; }
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

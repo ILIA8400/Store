@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Store.BL.DTOs;
+using Store.BL.Features.Address.Requests.Commands;
 using Store.BL.Features.Address.Requests.Queries;
 using System.Security.Claims;
 
@@ -18,19 +19,44 @@ namespace Store.Presentation.Controllers
         {
             var request = new GetAllAddressRequest() { UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
             var response = await mediator.Send(request);
-            return View(response);
+            var dto = new AddressPageDto
+            {
+                AddressInfoResponses = response
+            };
+            return View(dto);
         }
 
-        public async Task<IActionResult> CreateAddress()
-        {
-            return View("CreateAddress");
-        }
+        //public async Task<IActionResult> CreateAddress()
+        //{
+        //    return View("CreateAddress");
+        //}
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateAddress(CreateAddressDto createAddressDto)
+        public async Task<IActionResult> CreateAddress([Bind("City","Address","PostalCode")]AddressPageDto addressPageDto)
         {
-            return View();
+            var request = new AddAddressRequestCommand() 
+            { 
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                PostalCode = addressPageDto.PostalCode,
+                City = addressPageDto.City,
+                Address = addressPageDto.Address
+            };
+
+            var response = await mediator.Send(request);
+            return View("Index", response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterDefaultAddress([FromForm]int address = 0)
+        {
+            var request = new RegisterDefaultAddressRequestCommand
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                DefaultAddressId = address,
+            };
+            await mediator.Send(request);
+            return RedirectToAction("Index","Payment");
         }
     }
 }

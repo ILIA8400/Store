@@ -23,5 +23,10 @@ namespace Store.Repositories.Address
         {
             return await storeDbContext.Addresses.Where(x=>x.UserId == userId).ToListAsync();
         }
+
+        public async Task<int> GetDefaultAddressIdOfUser(string userId)
+        {
+            return (await storeDbContext.Users.Where(x=>x.Id == userId).SingleOrDefaultAsync()).DefaultAddressId;
+        }
     }
 }

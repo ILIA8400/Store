@@ -10,5 +10,9 @@ namespace Store.Repositories.Wallet
 {
     public interface IWalletRepository : IGenericRepository<WalletEntity>
     {
+        Task<WalletEntity> GetWalletByUserId(string userId);
+        Task<WalletEntity> GetWalletByUserAndDisount(string userId);
+        Task<decimal> GetBalanceByUserId(string userId);
+        Task<bool> IncreaseBalance(string userId,decimal amount);
     }
 }

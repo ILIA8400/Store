@@ -6,9 +6,13 @@ using Microsoft.Extensions.Options;
 using Store.BL.DTOs;
 using Store.DAL;
 using Store.DAL.Identity;
+using Store.Repositories.Address;
 using Store.Repositories.Basket;
 using Store.Repositories.Brand;
 using Store.Repositories.Category;
+using Store.Repositories.Discount;
+using Store.Repositories.Invoice;
+using Store.Repositories.InvoiceItem;
 using Store.Repositories.Product;
 using Store.Repositories.Wallet;
 using System.Net.NetworkInformation;
@@ -41,6 +45,10 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+builder.Services.AddScoped<IInvoiceItemRepository, InvoiceItemRepository>();
 
 // Add Policy
 builder.Services.AddCors(options =>

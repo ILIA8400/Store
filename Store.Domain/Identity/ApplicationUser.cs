@@ -14,5 +14,6 @@ namespace Store.DAL.Identity
         public Discount? Discount { get; set; }
         public List<Address>? Addresses { get; set; }
         public List<Invoice>? Invoices { get; set; }
+        public int DefaultAddressId { get; set; }
     }
 }

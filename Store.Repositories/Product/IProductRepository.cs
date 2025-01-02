@@ -12,5 +12,8 @@ namespace Store.Repositories.Product
     {
         Task<List<ProductEntity>> GetProductByCategoryId(int categoryId);
         Task<List<ProductEntity>> GetProductByCategoryAndBrand(int categoryId, int brandId);
+
+        // کاهش موجودی محصولات خریداری شده
+        Task ReducingTheInventoryOfPurchasedProducts(string userId);
     }
 }

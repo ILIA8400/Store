@@ -15,7 +15,14 @@ namespace Store.Repositories.Basket
         Task AddToBasket(ProductEntity product,int quentity, string userId);
         Task RemoveFromBasket(ProductEntity product, string userId);
         Task ClearBasket(string userId);
+
+        // برگردوندن سبد به همراه محصولات ان
         Task<BasketEntity> GetBasketsWithProducts(string userId);
+
+        // مبلغ کل محصولات سبد
         Task<decimal> GetTotalPrice(string userId);
+
+        // برگردوندن تعداد محصولات سبد
+        Task<int> GetTotalNumberOfProducts(string userId);
     }
 }

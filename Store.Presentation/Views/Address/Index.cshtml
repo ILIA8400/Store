@@ -1,4 +1,4 @@
-﻿@model AddressInfoResponse
+﻿@model AddressPageDto
 
 <!-- Header -->
 <header class="mb-2">
@@ -8,7 +8,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="" class="navbar-brand">
-            <img src="images/batman.svg" class="me-1" style="width: 55px; height: 55px;" alt="">
+            <img src="~/images/batman.svg" class="me-1" style="width: 55px; height: 55px;" alt="">
         </a>
         <div class="navbar-collapse collapse" id="mynavbar">
             <ul class="navbar-nav list-unstyled w-100">
@@ -22,7 +22,7 @@
 
                 <li class="nav-item ms-auto d-flex align-items-center">
                     <a href="" class="nav-link m-2 nav-icon me-auto"><i class="fa-solid fa-wallet" style="font-size: 20px; color: brown;"></i></a>
-                    <p class="mb-0 fw-bold">0 تومان</p>
+                    <p class="mb-0 fw-bold"><span id="wallet-balance-user"></span> تومان</p>
                 </li>
 
                 <li class="nav-item ms-3">
@@ -44,17 +44,25 @@
 <main>
     <div class="container mt-5">
         <div class="row bg-secondary-subtle p-3 rounded">
-            <form action="" method="get">
+            <form asp-action="RegisterDefaultAddress" asp-controller="Address" method="post">
                 <p class="mb-3 h4">ادرس ها</p>
-                @foreach(var item in Model)
-                <div class="col-12 mb-3">
-                    <input name="Address" type="radio" checked>
-                    <label class="mb-0">افسریه خیابان 44 بین اول دوم واحد 1 پلاک 23</label>
-                </div>
-                <div class="col-12">
-                    <input name="Address" type="radio">
-                    <label class="mb-0">افسریه خیابان 44 بین اول دوم واحد 1 پلاک 23</label>
-                </div>
+                @{
+                    string checkedAddress = "checked";
+                }
+                @foreach (var item in Model.AddressInfoResponses)
+                {
+                    if(item.IsDefaultAddress){
+                        checkedAddress = "checked";
+                    }
+                    else{
+                        checkedAddress = "";
+                    }
+
+                    <div class="col-12 mb-3">
+                        <input name="Address" value="@item.Id" type="radio" @checkedAddress>
+                        <label class="mb-0">@item.Address</label>
+                    </div>
+                }
                 <div class="col-6 mt-4">
                     <button class="btn btn-danger">تایید ادرس و مرحله بعد</button>
                 </div>
