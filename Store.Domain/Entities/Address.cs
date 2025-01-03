@@ -14,7 +14,10 @@ namespace Store.Domain.Entities
         public string City { get; set; }
         public string PostalCode { get; set; }
         public string UserId { get; set; }
+
+        #region Navigations
         public ApplicationUser User { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public List<Invoice> Invoices { get; set; } 
+        #endregion
     }
 }

@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Store.BL.Features.AdminPanel.Requests.Queries;
 
 namespace Store.Presentation.Controllers
 {
     public class AdminPanelController : Controller
     {
-        public IActionResult Index()
+        private readonly IMediator mediator;
+
+        public AdminPanelController(IMediator mediator)
         {
-            return View();
+            this.mediator = mediator;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var request = new GetInfoAdminPanelRequest();
+            return View(await mediator.Send(request));
         }
     }
 }

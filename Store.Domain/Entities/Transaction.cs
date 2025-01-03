@@ -11,10 +11,13 @@ namespace Store.Domain.Entities
     {
         public int TransactionId { get; set; }
         public int WalletId { get; set; }
-        public Wallet Wallet { get; set; }
         public TransactionStatus TransactionStatus { get; set; }
         public int TransactionType { get; set; }
         public decimal Amount { get; set; }
         public DateTime DateTime { get; set; }
+
+        #region Navigations
+        public Wallet Wallet { get; set; } 
+        #endregion
     }
 }

@@ -10,9 +10,12 @@ namespace Store.Domain.Entities
     {
         public int InvoiceItemId { get; set; }
         public int ProductId { get; set; }
-        public Product Product { get; set; }
         public int InvoiceId { get; set; }
-        public Invoice Invoice { get; set; }
         public int Quentity { get; set; }
+
+        #region Navigations
+        public Invoice Invoice { get; set; }
+        public Product Product { get; set; } 
+        #endregion
     }
 }

@@ -16,5 +16,10 @@ namespace Store.Repositories.Invoice
         {
             this.storeDbContext = storeDbContext;
         }
+
+        public async Task<int> GetNumberOfOrders()
+        {
+            return storeDbContext.Invoices.Count();
+        }
     }
 }

@@ -11,7 +11,10 @@ namespace Store.Domain.Entities
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public int? ParentId { get; set; }
+
+        #region Navigations
         public Category? Parent { get; set; }
-        public List<Product>? Products { get; set; }
+        public List<Product>? Products { get; set; } 
+        #endregion
     }
 }

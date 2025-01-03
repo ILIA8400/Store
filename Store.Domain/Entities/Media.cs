@@ -10,8 +10,11 @@ namespace Store.Domain.Entities
     {
         public int MediaId { get; set; }
         public int ProductId { get; set; }
-        public Product Product { get; set; }
         public string Path {  get; set; }
-        
+
+        #region Navigations
+        public Product Product { get; set; } 
+        #endregion
+
     }
 }

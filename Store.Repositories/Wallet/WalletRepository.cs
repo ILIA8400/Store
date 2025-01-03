@@ -45,7 +45,7 @@ namespace Store.Repositories.Wallet
                 var wallet = await shopDbContext.Wallets.Where(x => x.UserId == userId).SingleOrDefaultAsync();
                 wallet.Balance += amount;
 
-                var newTransaction = new Transaction
+                var newTransaction = new Domain.Entities.Transaction
                 {
                     Amount = amount,
                     DateTime = DateTime.Now,
@@ -56,7 +56,7 @@ namespace Store.Repositories.Wallet
 
                 if (wallet.Transactions == null)
                 {
-                    wallet.Transactions = new List<Transaction>();
+                    wallet.Transactions = new List<Domain.Entities.Transaction>();
                 }
                 wallet.Transactions.Add(newTransaction);
                 shopDbContext.SaveChanges();

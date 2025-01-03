@@ -12,16 +12,19 @@ namespace Store.Domain.Entities
         public string ProductName { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
         public decimal Price { get; set; }
         public int BrandId { get; set; }
-        public Brand Braand { get; set; }
         public int AvaillableQuentity {  get; set; }
-        public List<Media>? Medias { get; set; }
         public int? DiscountId { get; set; }
+
+        #region Navigations
         public Discount? Discount { get; set; }
+        public Brand Braand { get; set; }
+        public List<Media>? Medias { get; set; }
         public List<BasketItem>? BasketItems { get; set; }
-        public List<InvoiceItem>? InvoiceItems { get; set; }
+        public Category Category { get; set; }
+        public List<InvoiceItem>? InvoiceItems { get; set; } 
+        #endregion
 
 
     }

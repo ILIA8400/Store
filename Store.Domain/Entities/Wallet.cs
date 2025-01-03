@@ -12,7 +12,10 @@ namespace Store.Domain.Entities
         public int WalletId { get; set; }
         public decimal Balance { get; set; }
         public string UserId { get; set; }
+
+        #region Navigations
         public ApplicationUser User { get; set; }
-        public List<Transaction> Transactions {  get; set; }  
+        public List<Transaction> Transactions { get; set; }   
+        #endregion
     }
 }

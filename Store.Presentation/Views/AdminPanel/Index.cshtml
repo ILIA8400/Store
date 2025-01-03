@@ -1,7 +1,7 @@
 ﻿@section Styles{
     <link href="~/css/adminPanel.css" rel="stylesheet" asp-append-version="true"/>
 }
-
+@model AdminPanelInfoResponse
 
 <!-- Header -->
 <header>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="ps-2 d-flex flex-column align-items-center" dir="ltr">
                             <p class="mb-1 text-muted text-start">بازدید امروز</p>
-                            <h4 class="mb-0 ms-auto">۱۴,۰۰۰</h4>
+                            <h4 class="mb-0 ms-auto">14,000</h4>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="ps-2 d-flex flex-column align-items-center" dir="ltr">
                             <p class="mb-1 text-muted text-start me-auto">درامد</p>
-                            <h4 class="mb-0 ms-auto"><i class="fa-solid fa-plus fa-2xs"></i> ۱۴,۰۰۰,۰۰۰</h4>
+                            <h4 class="mb-0 ms-auto"><i class="fa-solid fa-plus fa-2xs"></i> @Model.Income.ToString("N0")</h4>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="ps-2 d-flex flex-column align-items-center" dir="ltr">
                             <p class="mb-1 text-muted text-start">سفارشات</p>
-                            <h4 class="mb-0 ms-auto">۱۴,۰۰۰</h4>
+                            <h4 class="mb-0 ms-auto">@Model.NumberOfOrders.ToString("N0")</h4>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                         </div>
                         <div class="ps-2 d-flex flex-column align-items-center" dir="ltr">
                             <p class="mb-1 text-muted text-start">تعداد کاربران</p>
-                            <h4 class="mb-0 ms-auto">۱۴,۰۰۰</h4>
+                            <h4 class="mb-0 ms-auto">@Model.NumberOfUsers.ToString("N0")</h4>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,10 @@ namespace Store.Domain.Entities
         public decimal TotalAmount { get; set; }
         public string? Description { get; set; }
         public string UserId { get; set; }
+
+        #region Navigations
         public ApplicationUser User { get; set; }
-        public List<BasketItem>? BasketItems { get; set; }
+        public List<BasketItem>? BasketItems { get; set; } 
+        #endregion
     }
 }

@@ -10,5 +10,6 @@ namespace Store.Repositories.Invoice
 {
     public interface IInvoiceRepository : IGenericRepository<Store.Domain.Entities.Invoice>
     {
+        Task<int> GetNumberOfOrders();
     }
 }
