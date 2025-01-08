@@ -1,0 +1,108 @@
+﻿@section Styles {
+    <link href="~/css/adminPanel.css" rel="stylesheet" asp-append-version="true" />
+}
+<partial name="_HeaderAdmin" />
+
+
+<main class="bg-light h-100">
+    <!-- Orders -->
+    <section>
+        <div class="container-md">
+            <div class="row">
+
+                <div class="col-12">
+                    <h1>لیست سفارشات</h1>
+                    <hr class="border-5 border-secondary">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <div class="row justify-content-between">
+                        <div class="col-md-5">
+                            <form action="" class="d-flex">
+                                <input type="search" placeholder="نام ، شهر ، موبایل ، توضیحات ، تاریخ" class="form-control">
+                                <button type="submit" class="btn btn-dark ms-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                        <div class="col-md-5 d-flex align-items-center mt-5 mt-md-0">
+                            <p class="mb-0 me-4">رسیدگی شده</p>
+                            <form action="">
+                                <div class="toggle-container">
+                                    <input class="toggle-input" type="checkbox">
+                                    <div class="toggle-handle-wrapper">
+                                        <div class="toggle-handle">
+                                            <div class="toggle-handle-knob"></div>
+                                            <div class="toggle-handle-bar-wrapper">
+                                                <div class="toggle-handle-bar"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-base">
+                                        <div class="toggle-base-inside"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+
+                    <div class="table-responsive table-container">
+                        <table class="table table-sm table-striped table-dark table-bordered border-primary table-hover shadow-sm" style="overflow: scroll;">
+                            <thead class="text-center">
+                                <tr class="table-secondary">
+                                    <th class="fw-bold">#</th>
+                                    <th>شماره موبایل</th>
+                                    <th>شهر</th>
+                                    <th>مبلغ کل</th>
+                                    <th>تاریخ</th>
+                                    <th>وضعیت رسیدگی</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center align-middle" style="cursor: pointer;">
+                                <tr>
+                                    <td class="fw-bold">1</td>
+                                    <td><a href="tel:۰۹۱۰۱۲۳۴۵۶۷" class="text-decoration-none text-info">۰۹۱۰۱۲۳۴۵۶۷</a></td>
+                                    <td>تهران</td>
+                                    <td style="max-width: 250px;">
+                                        <div class="overflow-auto" style="max-height: 70px;">
+                                            3,600,000
+                                        </div>
+                                    </td>
+                                    <td>۱۴۰۲/۰۳/۴۵</td>
+                                    <td>رسیدگی نشده</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">1</td>
+                                    <td><a href="tel:۰۹۱۰۱۲۳۴۵۶۷" class="text-decoration-none text-info">۰۹۱۰۱۲۳۴۵۶۷</a></td>
+                                    <td>تهران</td>
+                                    <td style="max-width: 250px;">
+                                        <div class="overflow-auto" style="max-height: 70px;">
+                                            3,600,000
+                                        </div>
+                                    </td>
+                                    <td>۱۴۰۲/۰۳/۴۵</td>
+                                    <td>رسیدگی نشده</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">1</td>
+                                    <td><a href="tel:۰۹۱۰۱۲۳۴۵۶۷" class="text-decoration-none text-info">۰۹۱۰۱۲۳۴۵۶۷</a></td>
+                                    <td>تهران</td>
+                                    <td style="max-width: 250px;">
+                                        <div class="overflow-auto" style="max-height: 70px;">
+                                            3,600,000
+                                        </div>
+                                    </td>
+                                    <td>۱۴۰۲/۰۳/۴۵</td>
+                                    <td>رسیدگی نشده</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Orders -->
+</main>

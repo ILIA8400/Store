@@ -43,7 +43,7 @@ namespace Store.Presentation.Controllers
                 Amount = amount
             };
             await mediator.Send(request);
-            return RedirectToAction("Index","Payment"); 
+            return RedirectToAction("Index","Home"); 
         }
 
         // گرفتن موجودی کاربر

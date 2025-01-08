@@ -12,6 +12,5 @@ namespace Store.BL.DTOs
         public OrdersInfoDto OrdersInfoDto { get; set; }
         public ProductsInfoDto ProductsInfoDto { get; set; }
         public UsersInfoDto UsersInfoDto { get; set; }
-        public AdminsInfoDto AdminsInfoDto { get; set; }
     }
 }

@@ -1,0 +1,163 @@
+﻿@model UsersInfoDto
+@section Styles {
+    <link href="~/css/adminPanel.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<partial name="_HeaderAdmin" />
+
+<main class="bg-light h-100">
+    <!-- Admins List -->
+    <section class="py-5">
+        <div class="container-md">
+            <div class="row bg-white rounded-3 p-5 shadow-lg justify-content-between">
+                <div class="col-12 text-center mb-4">
+                    <p class="display-5">مدیریت ادمین ها</p>
+                    <hr class="border border-3 border-dark-subtle">
+                </div>
+                <div class="col-md-4">
+                    <form method="post" asp-action="AddAdmin">
+                        <p class="h2 mb-4">افزودن ادمین</p>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="mb-2" for="name">شماره موبایل</label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control">
+                        </div>
+                        @* <div class="d-flex justify-content-around align-items-center">
+                            <p>نقش :</p>
+                            <div>
+                                <input type="radio" name="role">
+                                <label class="mb-2" for="name">Admin 1</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="role">
+                                <label class="mb-2" for="name">Admin 2</label>
+                            </div>
+                        </div> *@
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-outline-success">افزودن</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <p class="h2 mb-4">لیست ادمین ها</p>
+                    <div class="table-responsive table-container">
+                        <table class="table">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>شماره موبایل</th>
+                                    @* <th>نقش</th> *@
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center align-middle">
+                                @if(Model.Admins.Count != 0){
+                                    @foreach (var item in Model.Admins)
+                                    {
+                                        <tr>
+                                            <form asp-action="RemoveAdmin" method="post">
+                                                <td class="select-admin">@item.PhoneNumber</td>
+                                                <input type="hidden" asp-for="PhoneNumber" value="@item.PhoneNumber" />
+                                                <td class="user-select-none"><button type="submit" class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
+                                            </form>                                          
+                                        </tr>
+                                    }
+                                }        
+                                else{
+                                    <tr>
+                                        <td class="select-admin">ادمین نداریم</td>
+                                        <td class="select-admin"></td>
+                                    </tr>
+                                }
+                                @* <tr>
+                                    <td class="select-admin">09014567890</td>
+                                    <td class="select-admin">Admin1</td>
+                                    <td class="user-select-none"><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
+                                </tr> *@
+
+                            </tbody>                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Admins List -->
+    <!-- User List -->
+    <section class="py-5">
+        <div class="container-md">
+            <div class="row bg-white rounded-3 p-5 shadow-lg justify-content-center">
+                <div class="col-12 text-center mb-4">
+                    <p class="display-5">مدیریت کاربران</p>
+                    <hr class="border border-3 border-dark-subtle">
+                </div>
+                <div class="col-md-7">
+                    <div class="table-responsive table-container">
+                        <table class="table">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>#</th>
+                                    <th>شماره موبایل</th>
+                                    <th>موجودی کیف پول</th>
+                                    @* <th>وضعیت</th> *@
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center align-middle">
+                                @{
+                                    var userCount = 1;
+                                }
+                                @foreach (var item in Model.NormalUsers)
+                                {
+                                    <tr>
+                                        <td class="select-admin">@userCount</td>
+                                        <td class="select-admin">@item.PhoneNumber</td>
+                                        <td class="select-admin">@item.Balance?.ToString("N0")</td>
+                                        <td class="user-select-none"><button onclick="openModal()" class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
+                                        <td class="user-select-none"><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
+                                        <td class="user-select-none"><a class="btn btn-outline-success">تراکنش ها</a></td>
+                                    </tr>
+                                    userCount++;
+                                }
+                                
+@*                                 <tr>
+                                    <td class="select-admin">1</td>
+                                    <td class="select-admin">09014567890</td>
+                                    <td class="select-admin">230,000</td>
+                                    <td class="select-admin">تایید شده</td>
+                                    <td class="user-select-none"><button class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
+                                    <td class="user-select-none"><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
+                                    <td class="user-select-none"><a class="btn btn-outline-success">تراکنش ها</a></td>
+                                </tr> *@
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End User List -->
+    <div id="modalDialog" title="بروزرسانی اطلاعات" style="display: none;">
+        <form>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">شماره موبایل:</label>
+                <input type="text" id="phoneNumber" class="form-control" placeholder="شماره موبایل">
+            </div>
+            <div class="mb-3">
+                <label for="balance" class="form-label">مبلغ موجودی:</label>
+                <input type="number" id="balance" class="form-control" placeholder="مبلغ موجودی">
+            </div>
+        </form>
+    </div>
+    <div id="EditModal">
+
+    </div>
+</main>
+
+
+
+
+@section Scripts{
+    <script src="~/js/userManage.js"></script>
+}

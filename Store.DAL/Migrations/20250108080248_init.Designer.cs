@@ -12,7 +12,7 @@ using Store.DAL;
 namespace Store.DAL.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250102191408_init")]
+    [Migration("20250108080248_init")]
     partial class init
     {
         /// <inheritdoc />

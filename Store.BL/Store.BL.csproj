@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AdminPanel\Handlers\Commands\" />
-    <Folder Include="Features\AdminPanel\Requests\Commands\" />
     <Folder Include="Features\Brand\Handlers\Commands\" />
     <Folder Include="Features\Brand\Request\Commands\" />
     <Folder Include="Features\Category\Handlers\Commands\" />

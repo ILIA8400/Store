@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Store.DAL.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace Store.BL.DTOs
 {
     public class UsersInfoDto
     {
+        public List<UserManageDto> Admins { get; set; }
+        public List<UserManageDto> NormalUsers { get; set; }
+
+        public string? PhoneNumber { get; set; }
+
     }
 }

@@ -1,0 +1,91 @@
+﻿<header>
+    <nav class="navbar navbar-expand-md bg-white py-3 px-4">
+        <div class="navbar-toggler" id="menuToggle" data-bs-toggle="collapse" data-bs-target="#mynav">
+            <input id="checkbox" type="checkbox">
+            <label class="toggle" for="checkbox">
+                <div class="bar bar--top"></div>
+                <div class="bar bar--middle"></div>
+                <div class="bar bar--bottom"></div>
+            </label>
+        </div>
+        <div class="navbar-collapse collapse" id="mynav">
+            <ul class="navbar-nav list-unstyled w-100">
+
+                <li class="nav-item account mt-2 mt-md-0 dropdown">
+                    <a class="dropdown-toggle d-flex flex-row justify-content-center align-items-center p-1 rounded-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="images/45oled8-1200x1200-1.webp" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
+                        <p class="mb-0 ms-2 text-muted">سلام، ایلیا</p>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-start custom-dropdown-bell">
+                        <li>
+                            <button class="dropdown-item setting d-flex" type="button" data-bs-toggle="modal" data-bs-target="#setting">
+                                <i class="fa-solid fa-gear mt-1 me-2"></i>تنطیمات اکانت
+                            </button>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item logout d-flex" type="button" data-bs-toggle="modal" data-bs-target="#exit"><i class="fa-solid fa-sign-out mt-1 me-2"></i>خارج شدن</button></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item ms-auto">
+                    <a asp-action="Index" class="nav-link text-center text-md-start ms-md-4 p-0"><i class="fa-solid fa-home fa-lg" style="padding-top: 22px;"></i></a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>ایا میخواهید خارج شوید</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">در صورت خروج برای دسترسی به پنل باید مجدد وارد شوید</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-bs-dismiss="modal">می مانم</button>
+                    <button class="btn btn-danger">خروج</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="setting" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>تنظیمات اکانت</h4>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="mb-2" for="name">نام ادمین</label>
+                            <input type="text" class="form-control form-admin">
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2" for="name">نام کاربری</label>
+                            <input type="text" class="form-control form-admin">
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2" for="name">پسورد</label>
+                            <input type="text" class="form-control form-admin">
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2" for="name">تصویر پروفایل</label>
+                            <input type="file" class="form-control form-admin">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success">ثبت</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal">خروج</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+</header>
