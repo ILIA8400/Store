@@ -69,5 +69,14 @@ namespace Store.Repositories.Wallet
 
            
         }
+
+        public async Task UpdateBalanceWithPhoneNumber(string phoneNumber, decimal newBalance)
+        {
+            var userId = (await shopDbContext.Users.SingleOrDefaultAsync(x => x.PhoneNumber == phoneNumber)).Id;
+            var wallet = await shopDbContext.Wallets.SingleOrDefaultAsync(x => x.UserId == userId);
+            wallet.Balance = newBalance;
+
+            await shopDbContext.SaveChangesAsync();
+        }
     }
 }

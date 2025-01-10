@@ -19,9 +19,19 @@ namespace Store.Repositories.Discount
             this.storeDbContext = storeDbContext;
         }
 
+        public async Task<int?> GetDiscountIdByName(string name)
+        {
+            var discount = await storeDbContext.Discounts
+                                       .SingleOrDefaultAsync(s => s.DiscountName == name);
+
+            return discount?.DiscountId;
+        }
+
         public async Task<DiscountEntity> GetDiscountUser(string userId)
         {
             return (await storeDbContext.Users.Include(x=>x.Discount).Where(x=>x.Id == userId).SingleOrDefaultAsync()).Discount;
         }
+
+
     }
 }

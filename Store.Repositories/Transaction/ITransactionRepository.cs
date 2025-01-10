@@ -1,4 +1,5 @@
-﻿using Store.Repositories.Common;
+﻿using Store.Domain.Entities;
+using Store.Repositories.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Store.Repositories.Transaction
     public interface ITransactionRepository : IGenericRepository<Domain.Entities.Transaction>
     {
         Task<decimal> GetIncome();
+        Task<List<Domain.Entities.Transaction>> GetAllTransactionsOfUser(string userId);
     }
 }

@@ -1,0 +1,53 @@
+﻿@model TransactionsOfUserDto
+
+<partial name="_HeaderAdmin" />
+
+<main>
+    <!-- Table -->
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-9">
+                <h1 class="text-center mb-4">تراکنش های کاربر  <samp class="text-primary fw-bold">@Model.PhoneNumber</samp></h1>
+                <div class="table-responsive table-container">
+                    <table class="table">
+                        <thead class="text-center">
+                            <tr>
+                                <th>#</th>
+                                <th>مبلغ</th>
+                                <th>تاریخ</th>
+                                <th>وضعیت</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center align-middle">
+                            @{
+                                var userCount = 1;
+                            }
+                            @foreach(var item in Model.TransactionsOfUser){
+                                <tr>
+                                    <td class="select-admin">@userCount</td>
+                                    @if (item.TransactionType > 0){
+                                        <td class="select-admin text-success">@item.Amount.ToString("N0") +</td>
+                                    }
+                                    else{
+                                        <td class="select-admin text-danger">@item.Amount.ToString("N0") -</td>
+                                    }
+                                    <td class="select-admin">@item.DateTime</td>
+                                    @if (item.TransactionStatus == Store.Domain.Enum.TransactionStatus.Successed)
+                                    {
+                                        <td class="select-admin text-success fw-bold">موفق</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="select-admin text-danger fw-bold">نا موفق</td>
+                                    }
+                                </tr>
+                                userCount++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-danger" onclick="printWindow()">چاپ</button>
+            </div>
+        </div>
+    </div>
+</main>

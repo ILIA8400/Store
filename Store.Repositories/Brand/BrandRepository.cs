@@ -19,6 +19,11 @@ namespace Store.Repositories.Brand
             this.storeDbContext = storeDbContext;
         }
 
+        public async Task<BrandEntity> GetBrandByName(string name)
+        {
+            return await storeDbContext.Brands.SingleOrDefaultAsync(x=>x.BrandName == name);
+        }
+
         public async Task<List<BrandEntity>> GetBrandsByCategoryId(int categoryId)
         {
             // 1. تمام دسته‌بندی‌ها را از پایگاه داده بارگذاری می‌کنیم

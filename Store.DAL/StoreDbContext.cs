@@ -48,13 +48,17 @@ namespace Store.DAL
                 .HasForeignKey(i => i.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Invoice>()
-                .HasOne(i => i.Address)
-                .WithMany(a => a.Invoices)
-                .HasForeignKey(i => i.AddressId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.Entity<Invoice>()
+            //    .HasOne(i => i.Address)
+            //    .WithMany(a => a.Invoices)
+            //    .HasForeignKey(i => i.AddressId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Product>()
+            .HasQueryFilter(p => !p.IsDeleted);
 
+            builder.Entity<ApplicationUser>()
+            .HasQueryFilter(p => !p.IsDeleted);
 
             base.OnModelCreating(builder);
 

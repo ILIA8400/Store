@@ -17,6 +17,11 @@ namespace Store.Repositories.Invoice
             this.storeDbContext = storeDbContext;
         }
 
+        public Task DeleteAllInvoicesOfUser(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> GetNumberOfOrders()
         {
             return storeDbContext.Invoices.Count();

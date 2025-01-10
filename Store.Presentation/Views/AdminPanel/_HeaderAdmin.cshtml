@@ -11,7 +11,7 @@
         <div class="navbar-collapse collapse" id="mynav">
             <ul class="navbar-nav list-unstyled w-100">
 
-                <li class="nav-item account mt-2 mt-md-0 dropdown">
+@*                 <li class="nav-item account mt-2 mt-md-0 dropdown">
                     <a class="dropdown-toggle d-flex flex-row justify-content-center align-items-center p-1 rounded-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="images/45oled8-1200x1200-1.webp" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
                         <p class="mb-0 ms-2 text-muted">سلام، ایلیا</p>
@@ -25,10 +25,22 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><button class="dropdown-item logout d-flex" type="button" data-bs-toggle="modal" data-bs-target="#exit"><i class="fa-solid fa-sign-out mt-1 me-2"></i>خارج شدن</button></li>
                     </ul>
-                </li>
+                </li> *@
 
                 <li class="nav-item ms-auto">
-                    <a asp-action="Index" class="nav-link text-center text-md-start ms-md-4 p-0"><i class="fa-solid fa-home fa-lg" style="padding-top: 22px;"></i></a>
+                    <a asp-action="Products" class="nav-link text-center text-md-start ms-md-4 p-0"><i class="fa-solid fa-store fa-lg"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-action="UserManage" class="nav-link text-center text-md-start ms-md-4 p-0"><i class="fa-solid fa-users fa-lg"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-action="Orders" class="nav-link text-center text-md-start ms-md-4 p-0"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+                </li>
+
+                <li class="nav-item me-auto">
+                    <a asp-action="Index" class="nav-link text-center text-md-start ms-md-4 p-0"><i class="fa-solid fa-home fa-lg"></i></a>
                 </li>
 
             </ul>

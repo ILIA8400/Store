@@ -19,6 +19,19 @@ namespace Store.Repositories.Address
             this.storeDbContext = storeDbContext;
         }
 
+        public async Task DeleteAllUserAddress(string userId)
+        {
+            var user = storeDbContext.Users
+                .Include(u => u.Addresses) // لود کردن آدرس‌های مرتبط
+                .FirstOrDefault(u => u.Id == userId);
+
+            if (user != null && user.Addresses.Any())
+            {
+                storeDbContext.Addresses.RemoveRange(user.Addresses); // حذف همه آدرس‌ها
+                await storeDbContext.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<AddressEntity>> GetAllAddressUser(string userId)
         {
             return await storeDbContext.Addresses.Where(x=>x.UserId == userId).ToListAsync();

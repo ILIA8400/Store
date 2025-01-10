@@ -16,6 +16,7 @@ namespace Store.Domain.Entities
         public int BrandId { get; set; }
         public int AvaillableQuentity {  get; set; }
         public int? DiscountId { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         #region Navigations
         public Discount? Discount { get; set; }

@@ -8,6 +8,7 @@ namespace Store.BL.DTOs
 {
     public class VerifyCodeDto
     {
+        public string PhoneNumber { get; set; }
         public int Code { get; set; }
     }
 }

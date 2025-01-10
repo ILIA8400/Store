@@ -21,17 +21,6 @@
                             <label asp-for="PhoneNumber" class="mb-2" for="name">شماره موبایل</label>
                             <input asp-for="PhoneNumber" type="text" class="form-control">
                         </div>
-                        @* <div class="d-flex justify-content-around align-items-center">
-                            <p>نقش :</p>
-                            <div>
-                                <input type="radio" name="role">
-                                <label class="mb-2" for="name">Admin 1</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="role">
-                                <label class="mb-2" for="name">Admin 2</label>
-                            </div>
-                        </div> *@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-outline-success">افزودن</button>
                         </div>
@@ -44,7 +33,6 @@
                             <thead class="text-center">
                                 <tr>
                                     <th>شماره موبایل</th>
-                                    @* <th>نقش</th> *@
                                     <th></th>
                                 </tr>
                             </thead>
@@ -67,11 +55,6 @@
                                         <td class="select-admin"></td>
                                     </tr>
                                 }
-                                @* <tr>
-                                    <td class="select-admin">09014567890</td>
-                                    <td class="select-admin">Admin1</td>
-                                    <td class="user-select-none"><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
-                                </tr> *@
 
                             </tbody>                           
                         </table>
@@ -97,7 +80,6 @@
                                     <th>#</th>
                                     <th>شماره موبایل</th>
                                     <th>موجودی کیف پول</th>
-                                    @* <th>وضعیت</th> *@
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -113,22 +95,17 @@
                                         <td class="select-admin">@userCount</td>
                                         <td class="select-admin">@item.PhoneNumber</td>
                                         <td class="select-admin">@item.Balance?.ToString("N0")</td>
-                                        <td class="user-select-none"><button onclick="openModal()" class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
-                                        <td class="user-select-none"><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
-                                        <td class="user-select-none"><a class="btn btn-outline-success">تراکنش ها</a></td>
+                                        <td class="user-select-none"><button type="button" data-phonenumber="@item.PhoneNumber" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
+                                        <td class="user-select-none">
+                                            <form asp-action="DeleteUser" method="post">
+                                                <input type="hidden" asp-for="PhoneNumber" value="@item.PhoneNumber" />
+                                                <button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                        <td class="user-select-none"><a asp-action="UserOfTransactions" asp-route-phoneNumber="@item.PhoneNumber" class="btn btn-outline-success">تراکنش ها</a></td>
                                     </tr>
                                     userCount++;
                                 }
-                                
-@*                                 <tr>
-                                    <td class="select-admin">1</td>
-                                    <td class="select-admin">09014567890</td>
-                                    <td class="select-admin">230,000</td>
-                                    <td class="select-admin">تایید شده</td>
-                                    <td class="user-select-none"><button class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
-                                    <td class="user-select-none"><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
-                                    <td class="user-select-none"><a class="btn btn-outline-success">تراکنش ها</a></td>
-                                </tr> *@
                                 
                             </tbody>
                         </table>
@@ -138,20 +115,30 @@
         </div>
     </section>
     <!-- End User List -->
-    <div id="modalDialog" title="بروزرسانی اطلاعات" style="display: none;">
-        <form>
-            <div class="mb-3">
-                <label for="phoneNumber" class="form-label">شماره موبایل:</label>
-                <input type="text" id="phoneNumber" class="form-control" placeholder="شماره موبایل">
-            </div>
-            <div class="mb-3">
-                <label for="balance" class="form-label">مبلغ موجودی:</label>
-                <input type="number" id="balance" class="form-control" placeholder="مبلغ موجودی">
-            </div>
-        </form>
-    </div>
-    <div id="EditModal">
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">بروزرسانی کاربر</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="UpdateUser" method="post">
+                        <div class="mb-3">
+                            <input type="hidden" id="OldPhoneNumber" name="OldPhoneNumber" value="" />
+                            <label asp-for="PhoneNumber" class="col-form-label">شماره موبایل:</label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Balance" class="col-form-label">موجودی کیف پول:</label>
+                            <input asp-for="Balance" type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">تایید</button>
+                    </form>
+                </div>               
+            </div>
+        </div>
     </div>
 </main>
 

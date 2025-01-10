@@ -14,15 +14,16 @@ namespace Store.Domain.Entities
         public DateTime DateTime { get; set; }
         public int NumberOfItem { get; set; }
         public decimal TotalAmount { get; set; }
-        public int AddressId { get; set; }
         public int? DiscountId { get; set; }
         public string ApplicationUserId { get; set; }
+        public int AddressId { get; set; }
 
         #region Navigations
-        public ApplicationUser ApplicationUser { get; set; }
         public Address Address { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         public List<InvoiceItem> InvoiceItems { get; set; }
-        public Discount? Discount { get; set; } 
+        public Discount? Discount { get; set; }
         #endregion
     }
+
 }

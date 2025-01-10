@@ -9,7 +9,7 @@
                     <p class="mb-0 fw-bold h4">ثبت نام</p>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Login" asp-controller="Register" method="post">
+                    <form asp-action="SendVerifyCode" asp-controller="Register" method="post">
                         <div class="mb-3">
                             <label asp-for="PhoneNumber" class="form-label">شماره موبایل</label>
                             <input id="PhoneNumber" type="text" class="form-control" asp-for="PhoneNumber">

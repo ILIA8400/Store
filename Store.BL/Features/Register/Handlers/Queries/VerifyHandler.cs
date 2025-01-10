@@ -39,21 +39,21 @@ namespace Store.BL.Features.Register.Handlers.Queries
         public async Task Handle(VerifyRequest request, CancellationToken cancellationToken)
         {
             // PhoneNumber
-            if (request.VerifyCodeDto.Code != int.Parse(memoryCache.Get("09104641358").ToString()))
+            if (request.VerifyCodeDto.Code != int.Parse(memoryCache?.Get(request.VerifyCodeDto.PhoneNumber)?.ToString() ?? "0"))
             {
                 throw new InvalidOperationException("Invalid Code");
             }
 
 
-            var user = await userManager.FindByNameAsync("09104641358");
+            var user = await userManager.FindByNameAsync(request.VerifyCodeDto.PhoneNumber);
 
             if (user == null)
             {
                 // PhoneNumber
                 var newUser = new ApplicationUser
                 {
-                    PhoneNumber = "09104641358",
-                    UserName = "09104641358"
+                    PhoneNumber = request.VerifyCodeDto.PhoneNumber,
+                    UserName = request.VerifyCodeDto.PhoneNumber,
                 };
 
                 var result = await userManager.CreateAsync(newUser);
@@ -69,6 +69,8 @@ namespace Store.BL.Features.Register.Handlers.Queries
                 else
                 {
                     newUser.PhoneNumberConfirmed = true;
+                    await userManager.UpdateAsync(newUser);
+
                     var newWallet = new WalletEntity()
                     {
                         Balance = 0,
@@ -84,6 +86,8 @@ namespace Store.BL.Features.Register.Handlers.Queries
                     walletRepository.Add(newWallet);
                     basketRepository.Add(newBasket);
                     await walletRepository.SaveChange();
+
+                    await signInManager.SignInAsync(newUser, true);
                 }
             }
             else

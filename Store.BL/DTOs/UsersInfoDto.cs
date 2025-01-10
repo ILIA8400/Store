@@ -13,6 +13,7 @@ namespace Store.BL.DTOs
         public List<UserManageDto> NormalUsers { get; set; }
 
         public string? PhoneNumber { get; set; }
+        public decimal? Balance { get; set; }
 
     }
 }

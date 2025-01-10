@@ -1,6 +1,9 @@
 ﻿@section Styles {
     <link href="~/css/adminPanel.css" rel="stylesheet" asp-append-version="true" />
 }
+
+@model ProductInfoDto
+
 <partial name="_HeaderAdmin" />
 
 <main class="bg-light">
@@ -71,144 +74,75 @@
                             <div class="carousel-item active">
 
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
+
+                                    @for (int i = 0; i < Math.Min(3, Model.Products.Count); i++)
+                                    {
+                                        if (Model.Products[i] == null) continue;
+                                          <!-- Skip null elements -->
+                                        <div class="col-md-6 col-lg-4 mb-5">
+                                            <div class="card">
+                                                <div class="p-3">
+                                                    <img src="https://localhost:44313/images/@Model.Products[i].Path" class="card-img-top" alt="">
+                                                </div>                                             
+                                                <div class="card-body text-center">
+                                                    <p class="card-title h5 mb-3">@Model.Products[i].ProductName</p>
+                                                    <p>@Model.Products[i].ProductDescription</p>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between align-items-center">
+                                                    <p class="mb-0">قیمت : @Model.Products[i].Price.ToString("N0")</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
+                                    
                                 </div>
 
                             </div>
                             <div class="carousel-item">
 
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
+                                    @for (int i = 3; i < Math.Min(6, Model.Products.Count); i++)  
+                                    {
+                                        @if (Model.Products[i] == null) continue;
+                                        <div class="col-md-6 col-lg-4 mb-5">
+                                            <div class="card">                                                
+                                                <div class="p-3">
+                                                    <img src="https://localhost:44313/images/@Model.Products[i].Path" class="card-img-top" alt="">
+                                                </div>
+                                                <div class="card-body text-center">
+                                                    <p class="card-title h5 mb-3">@Model.Products[i].ProductName</p>
+                                                    <p>@Model.Products[i].ProductDescription</p>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between align-items-center">
+                                                    <p class="mb-0">قیمت : @Model.Products[i].Price.ToString("N0")</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                 </div>
 
                             </div>
                             <div class="carousel-item ">
 
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
+                                    @for (int i = 6; i < Math.Min(9, Model.Products.Count); i++)  
+                                    {
+                                        @if (Model.Products[i] == null) continue;
+                                        <div class="col-md-6 col-lg-4 mb-5">
+                                            <div class="card">
+                                                <div class="p-3">
+                                                    <img src="https://localhost:44313/images/@Model.Products[i].Path" class="card-img-top" alt="">
+                                                </div>
+                                                <div class="card-body text-center">
+                                                    <p class="card-title h5 mb-3">@Model.Products[i].ProductName</p>
+                                                    <p>@Model.Products[i].ProductDescription</p>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between align-items-center">
+                                                    <p class="mb-0">قیمت : @Model.Products[i].Price.ToString("N0")</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-5">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <img src="images/71YDXFhIuWL._AC_SL1500_.jpg" class="card-img-top" alt="">
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <p class="card-title h5 mb-3">Gtx 1080 Ti</p>
-                                                <p>کارت گرافیک با بهترین قیمت بازار در فروردین عرضه شده است و دارای گارانتی است</p>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                                <p class="mb-0">قیمت : 30,000,000</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                 </div>
 
                             </div>
@@ -233,8 +167,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>نام</th>
-                                    <th>توضیحات</th>
                                     <th>قیمت</th>
+                                    <th>درصد تخفیف</th>
                                     <th>دسته بندی ها</th>
                                     <th>برند</th>
                                     <th>موجودی</th>
@@ -243,45 +177,36 @@
                                 </tr>
                             </thead>
                             <tbody class="text-center align-middle">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Gtx 1080 Ti</td>
-                                    <td>محصول عالی...</td>
-                                    <td>550,000,000</td>
-                                    <td>کارت گرافیک</td>
-                                    <td>Nvidia</td>
-                                    <td>4</td>
-                                    <td><button class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
-                                    <td><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Gtx 1080 Ti</td>
-                                    <td>محصول عالی...</td>
-                                    <td>550,000,000</td>
-                                    <td>کارت گرافیک</td>
-                                    <td>Nvidia</td>
-                                    <td>4</td>
-                                    <td><button class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
-                                    <td><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Gtx 1080 Ti</td>
-                                    <td>محصول عالی...</td>
-                                    <td>550,000,000</td>
-                                    <td>کارت گرافیک</td>
-                                    <td>Nvidia</td>
-                                    <td>4</td>
-                                    <td><button class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
-                                    <td><button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button></td>
-                                </tr>
+
+                                @{
+                                    var count = 1;
+                                }
+                                @foreach(var product in Model.Products){
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@product.ProductName</td>
+                                        <td>@product.Price.ToString("N0")</td>
+                                        <td>@product.DiscountPercentage</td>
+                                        <td>@product.CategoryName</td>
+                                        <td>@product.Brand</td>
+                                        <td>@product.AvaillableQuentity</td>
+                                        <td><button type="button" data-productId="@product.ProductId" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">ویرایش <i class="fa-solid fa-pencil"></i></button></td>
+                                        <td>
+                                            <form method="post" asp-action="DeleteProduct">
+                                                <input type="hidden" asp-for="ProductId" value="@product.ProductId" />
+                                                <button class="btn btn-outline-danger">حذف <i class="fa-solid fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    count++;
+                                }                                
+     
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-grid mt-4 mb-3">
+                    @* <div class="d-grid mt-4 mb-3">
                         <a href="" class="btn btn-dark">اضافه کردن محصول جدید به این دسته بندی<i class="fa-solid fa-file-edit ms-2"></i></a>
-                    </div>
+                    </div> *@
                 </div>
 
 
@@ -290,4 +215,122 @@
     </section>
     <!-- End Products -->
 
+    <!-- Add Product Form -->
+    <section class="py-5">
+        <div class="container-md d-flex justify-content-center">
+            <div class="row bg-white rounded-3 py-3 shadow-lg justify-content-center w-50">
+                <p class="h2 text-primary-emphasis text-center my-3">اضافه کردن محصول جدید</p>
+                <form method="post" enctype="multipart/form-data" asp-action="AddProduct">
+                    <div class="mb-3">
+                        <label for="ProductName" class="form-label">نام محصول</label>
+                        <input type="text" class="form-control" id="ProductName" name="ProductName" value="@Model.ProductName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ProductDescription" class="form-label">توضیحات محصول</label>
+                        <textarea class="form-control" id="ProductDescription" name="ProductDescription" required>@Model.ProductDescription</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Price" class="form-label">قیمت</label>
+                        <input type="number" class="form-control" id="Price" name="Price" value="@Model.Price" required step="0.01" min="0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ProductImage" class="form-label">فایل تصویر محصول</label>
+                        <input type="file" class="form-control" id="ProductImage" name="ProductImage" accept="image/*" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="AvaillableQuentity" class="form-label">تعداد موجود</label>
+                        <input type="number" class="form-control" id="AvaillableQuentity" name="AvaillableQuentity" value="@Model.AvaillableQuentity" required min="0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="CategoryName" class="form-label">نام دسته‌بندی</label>
+                        <input type="text" class="form-control" id="CategoryName" name="CategoryName" value="@Model.CategoryName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="DiscountPercentage" class="form-label">درصد تخفیف</label>
+                        <input type="number" class="form-control" id="DiscountPercentage" name="DiscountPercentage" value="@Model.DiscountPercentage" max="100">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="DiscountPercentage" class="form-label">تعداد روز های تخفیف</label>
+                        <input type="number" class="form-control" id="DayOfDiscount" name="DayOfDiscount" value="@Model.DiscountPercentage">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Brand" class="form-label">برند</label>
+                        <input type="text" class="form-control" id="Brand" name="Brand" value="@Model.Brand">
+                    </div>
+
+                    <div class="d-grid mb-3 mt-4">
+                        <button type="submit" class="btn btn-outline-primary">ثبت محصول</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    @* Modal *@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">بروزرسانی محصول</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">لطفا فقط فیلد های که نیاز به تغییر دارند تغییر بدید.</p>
+                    <form enctype="multipart/form-data" asp-action="UpdateProduct" method="post">
+                        <input type="hidden" id="ProductId" name="ProductId" value="" />
+                        <div class="mb-3">
+                            <label asp-for="ProductName" class="col-form-label">نام محصول:</label>
+                            <input asp-for="ProductName" type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ProductDescription" class="col-form-label">توضیحات:</label>
+                            <input asp-for="ProductDescription" type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Price" class="col-form-label">قیمت:</label>
+                            <input asp-for="Price" type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ProductImage" class="col-form-label">تصویر جدید:</label>
+                            <input type="file" class="form-control" id="ProductImage" name="ProductImage" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="AvaillableQuentity" class="col-form-label">تعداد موجود:</label>
+                            <input asp-for="AvaillableQuentity" type="text" class="form-control" id="recipient-name" required min="0">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CategoryName" class="col-form-label">نام دسته بندی جدید:</label>
+                            <input asp-for="CategoryName" type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DiscountPercentage" class="col-form-label">درصد تخفیف:</label>
+                            <input asp-for="DiscountPercentage" type="text" class="form-control" max="100">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DayOfDiscount" class="col-form-label">تعداد روز های تخفیف:</label>
+                            <input asp-for="DayOfDiscount" type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Brand" class="col-form-label">برند:</label>
+                            <input asp-for="Brand" type="text" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">تایید</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
+
+@section Scripts {
+    <script src="~/js/updateProduct.js"></script>
+}

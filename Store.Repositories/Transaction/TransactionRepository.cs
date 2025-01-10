@@ -1,4 +1,5 @@
-﻿using Store.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using Store.DAL;
 using Store.Repositories.Common;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,17 @@ namespace Store.Repositories.Transaction
 
             return income;
         }
+
+        public async Task<List<Domain.Entities.Transaction>> GetAllTransactionsOfUser(string userId)
+        {
+            var result = await storeDbContext.Wallets
+                .Where(x => x.UserId == userId)
+                .Include(x => x.Transactions)
+                .SelectMany(x => x.Transactions) // فلت کردن تراکنش‌ها
+                .ToListAsync();
+
+            return result;
+        }
+
     }
 }

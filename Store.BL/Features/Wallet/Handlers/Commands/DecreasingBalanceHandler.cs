@@ -50,7 +50,7 @@ namespace Store.BL.Features.Wallet.Handlers.Commands
             walletUserDiscount.Balance = newBalance;
 
             // ساخت تراکنش
-            var transaction = new Transaction
+            var transaction = new Store.Domain.Entities.Transaction
             {
                 Amount = request.Amount,
                 DateTime = DateTime.Now,
@@ -63,7 +63,7 @@ namespace Store.BL.Features.Wallet.Handlers.Commands
             // اضافه کردن تراکنش به کیف پول
             if (walletUserDiscount.Transactions == null)
             {
-                walletUserDiscount.Transactions = new List<Transaction>();
+                walletUserDiscount.Transactions = new List<Store.Domain.Entities.Transaction>();
             }
             walletUserDiscount.Transactions.Add(transaction);
 

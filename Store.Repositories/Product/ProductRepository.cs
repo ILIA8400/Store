@@ -125,5 +125,10 @@ namespace Store.Repositories.Product
             }
             storeDbContext.SaveChanges();
         }
+
+        public async Task<ProductEntity> GetByName(string name)
+        {
+            return await storeDbContext.Products.SingleOrDefaultAsync(x => x.ProductName == name);
+        }
     }
 }

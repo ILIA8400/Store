@@ -11,9 +11,13 @@ namespace Store.DAL.Identity
     public class ApplicationUser : IdentityUser
     {
         public int? DiscountId { get; set; }
+        public int DefaultAddressId { get; set; }
+        public bool IsDeleted { get; set; } = false;
+
+        #region Navigations
         public Discount? Discount { get; set; }
         public List<Address>? Addresses { get; set; }
-        public List<Invoice>? Invoices { get; set; }
-        public int DefaultAddressId { get; set; }
+        public List<Invoice>? Invoices { get; set; } 
+        #endregion
     }
 }

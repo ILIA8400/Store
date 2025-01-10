@@ -1,6 +1,8 @@
 ﻿@section Styles {
     <link href="~/css/adminPanel.css" rel="stylesheet" asp-append-version="true" />
 }
+@model OrdersInfoDto
+
 <partial name="_HeaderAdmin" />
 
 
@@ -15,7 +17,7 @@
                     <hr class="border-5 border-secondary">
                 </div>
 
-                <div class="col-12 mb-3">
+@*                 <div class="col-12 mb-3">
                     <div class="row justify-content-between">
                         <div class="col-md-5">
                             <form action="" class="d-flex">
@@ -43,7 +45,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> *@
 
                 <div class="col-12">
 
@@ -53,49 +55,41 @@
                                 <tr class="table-secondary">
                                     <th class="fw-bold">#</th>
                                     <th>شماره موبایل</th>
-                                    <th>شهر</th>
+                                    <th>تعداد کل کالا ها</th>
                                     <th>مبلغ کل</th>
                                     <th>تاریخ</th>
-                                    <th>وضعیت رسیدگی</th>
                                 </tr>
                             </thead>
                             <tbody class="text-center align-middle" style="cursor: pointer;">
-                                <tr>
-                                    <td class="fw-bold">1</td>
-                                    <td><a href="tel:۰۹۱۰۱۲۳۴۵۶۷" class="text-decoration-none text-info">۰۹۱۰۱۲۳۴۵۶۷</a></td>
-                                    <td>تهران</td>
-                                    <td style="max-width: 250px;">
-                                        <div class="overflow-auto" style="max-height: 70px;">
-                                            3,600,000
-                                        </div>
-                                    </td>
-                                    <td>۱۴۰۲/۰۳/۴۵</td>
-                                    <td>رسیدگی نشده</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">1</td>
-                                    <td><a href="tel:۰۹۱۰۱۲۳۴۵۶۷" class="text-decoration-none text-info">۰۹۱۰۱۲۳۴۵۶۷</a></td>
-                                    <td>تهران</td>
-                                    <td style="max-width: 250px;">
-                                        <div class="overflow-auto" style="max-height: 70px;">
-                                            3,600,000
-                                        </div>
-                                    </td>
-                                    <td>۱۴۰۲/۰۳/۴۵</td>
-                                    <td>رسیدگی نشده</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">1</td>
-                                    <td><a href="tel:۰۹۱۰۱۲۳۴۵۶۷" class="text-decoration-none text-info">۰۹۱۰۱۲۳۴۵۶۷</a></td>
-                                    <td>تهران</td>
-                                    <td style="max-width: 250px;">
-                                        <div class="overflow-auto" style="max-height: 70px;">
-                                            3,600,000
-                                        </div>
-                                    </td>
-                                    <td>۱۴۰۲/۰۳/۴۵</td>
-                                    <td>رسیدگی نشده</td>
-                                </tr>
+                                @if(Model.OrderInfoDtos != null){
+                                    @foreach (var item in Model.OrderInfoDtos)
+                                    {
+                                        <tr>
+                                            <td class="fw-bold">1</td>
+                                            <td><a href="tel:@item.PhoneNumber" class="text-decoration-none text-info">@item.PhoneNumber</a></td>
+                                            <td>@item.NumberOfItem</td>
+                                            <td style="max-width: 250px;">
+                                                <div class="overflow-auto" style="max-height: 70px;">
+                                                    @item.TotalAmount.ToString("N0")
+                                                </div>
+                                            </td>
+                                            <td>@item.DateTime</td>
+                                        </tr>
+                                    }
+                                }     
+                                else{
+                                    <tr>
+                                        <td class="fw-bold">1</td>
+                                        <td><a href="tel:" class="text-decoration-none text-info">سفارشی یافت نشد</a></td>
+                                        <td></td>
+                                        <td style="max-width: 250px;">
+                                            <div class="overflow-auto" style="max-height: 70px;">
+                                                
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

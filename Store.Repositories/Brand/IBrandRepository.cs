@@ -11,5 +11,6 @@ namespace Store.Repositories.Brand
     public interface IBrandRepository : IGenericRepository<BrandEntity>
     {
         Task<List<BrandEntity>> GetBrandsByCategoryId(int categoryId);
+        Task<BrandEntity> GetBrandByName(string name);
     }
 }

@@ -13,5 +13,6 @@ namespace Store.Repositories.Address
     {
         Task<List<AddressEntity>> GetAllAddressUser(string userId);
         Task<int> GetDefaultAddressIdOfUser(string userId);
+        Task DeleteAllUserAddress(string userId);
     }
 }

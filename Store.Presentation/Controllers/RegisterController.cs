@@ -18,9 +18,11 @@ namespace Store.Presentation.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Login()
+
+        public async Task<IActionResult> Login(string key)
         {
-            return View("VerifyCode");
+            var mobileNumber = TempData[key]?.ToString();          
+            return View("VerifyCode",new VerifyCodeDto { PhoneNumber = mobileNumber});
         }
 
         [HttpPost]
@@ -29,7 +31,7 @@ namespace Store.Presentation.Controllers
             try
             {
                 var request = new VerifyRequest() { VerifyCodeDto = verifyCodeDto };
-                await mediator.Send(request);
+                await mediator.Send(request);                
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
@@ -46,8 +48,9 @@ namespace Store.Presentation.Controllers
             {
                 var request = new VerifyCodeRequest() { PhoneNumberDto = numberDto };
                 var response = await mediator.Send(request);
-
-                return RedirectToAction("Login");
+                var uniqueKey = Guid.NewGuid().ToString();
+                TempData[uniqueKey] = numberDto.PhoneNumber;
+                return RedirectToAction("Login", new { key = uniqueKey });
             }
             catch (Exception ex)
             {

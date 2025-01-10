@@ -12,7 +12,7 @@ using Store.DAL;
 namespace Store.DAL.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250108080248_init")]
+    [Migration("20250109162358_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -683,7 +683,7 @@ namespace Store.DAL.Migrations
                     b.HasOne("Store.Domain.Entities.Address", "Address")
                         .WithMany("Invoices")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Store.DAL.Identity.ApplicationUser", "ApplicationUser")

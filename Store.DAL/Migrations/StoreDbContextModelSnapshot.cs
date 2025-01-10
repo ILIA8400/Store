@@ -180,6 +180,9 @@ namespace Store.DAL.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -361,14 +364,12 @@ namespace Store.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiscountId"));
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("DiscountCeiling")
+                    b.Property<decimal?>("DiscountCeiling")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("DiscountName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("DiscountPercentage")
@@ -494,6 +495,9 @@ namespace Store.DAL.Migrations
 
                     b.Property<int?>("DiscountId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -680,7 +684,7 @@ namespace Store.DAL.Migrations
                     b.HasOne("Store.Domain.Entities.Address", "Address")
                         .WithMany("Invoices")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Store.DAL.Identity.ApplicationUser", "ApplicationUser")

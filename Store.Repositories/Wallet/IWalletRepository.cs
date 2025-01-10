@@ -14,5 +14,6 @@ namespace Store.Repositories.Wallet
         Task<WalletEntity> GetWalletByUserAndDisount(string userId);
         Task<decimal> GetBalanceByUserId(string userId);
         Task<bool> IncreaseBalance(string userId,decimal amount);
+        Task UpdateBalanceWithPhoneNumber(string phoneNumber,decimal newBalance);
     }
 }

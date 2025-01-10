@@ -15,5 +15,7 @@ namespace Store.Repositories.Product
 
         // کاهش موجودی محصولات خریداری شده
         Task ReducingTheInventoryOfPurchasedProducts(string userId);
+
+        Task<ProductEntity> GetByName(string name);
     }
 }

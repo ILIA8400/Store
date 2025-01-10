@@ -11,8 +11,9 @@
                 <div class="card-body">
                     <form asp-action="Login" method="post">
                         <div class="mb-3">
+                            <input type="hidden" name="PhoneNumber" value="@Model.PhoneNumber" />
                             <label asp-for="Code" class="form-label">کد تایید</label>
-                            <input asp-for="Code" type="text" class="form-control">
+                            <input asp-for="Code" type="text" class="form-control" max="4" min="4" value="">
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-outline-dark">تایید</button>

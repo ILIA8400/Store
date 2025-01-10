@@ -11,5 +11,6 @@ namespace Store.Repositories.Discount
     public interface IDiscountRepository : IGenericRepository<DiscountEntity>
     {
         Task<DiscountEntity> GetDiscountUser(string userId);
+        Task<int?> GetDiscountIdByName(string name);
     }
 }

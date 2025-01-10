@@ -10,5 +10,6 @@ namespace Store.Repositories.Category
 {
     public interface ICategoryRepository : IGenericRepository<CategoryEntity>
     {
+        Task<CategoryEntity> GetCategoryByName(string name);
     }
 }

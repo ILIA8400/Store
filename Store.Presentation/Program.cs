@@ -13,6 +13,7 @@ using Store.Repositories.Category;
 using Store.Repositories.Discount;
 using Store.Repositories.Invoice;
 using Store.Repositories.InvoiceItem;
+using Store.Repositories.Media;
 using Store.Repositories.Product;
 using Store.Repositories.Transaction;
 using Store.Repositories.Wallet;
@@ -36,7 +37,14 @@ builder.Configuration.AddUserSecrets("0b8e2d76-24c1-40c7-936b-50781d320460");
 // Add DbContext
 #region DbContext
 string? connection = builder.Configuration.GetConnectionString("cnn");
-builder.Services.AddDbContext<StoreDbContext>(x => x.UseSqlServer(connection));
+builder.Services.AddDbContext<StoreDbContext>(x => x.UseSqlServer(connection, x =>
+{
+    x.CommandTimeout(180);
+    x.EnableRetryOnFailure(
+                    maxRetryCount: 5, 
+                    maxRetryDelay: TimeSpan.FromSeconds(10),
+                    errorNumbersToAdd: null); 
+}));
 #endregion
 
 // Add Identity
@@ -56,6 +64,7 @@ builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 builder.Services.AddScoped<IInvoiceItemRepository, InvoiceItemRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<IMediaRepository, MediaRepository>();
 #endregion
 
 // Add Policy

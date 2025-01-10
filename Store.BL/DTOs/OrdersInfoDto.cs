@@ -8,5 +8,6 @@ namespace Store.BL.DTOs
 {
     public class OrdersInfoDto
     {
+        public List<OrderInfoDto> OrderInfoDtos { get; set; }
     }
 }
