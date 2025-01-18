@@ -16,6 +16,7 @@ namespace Store.Presentation.Controllers
             this.mediator = mediator;
         }
 
+        //[Authorize(Roles ="User")]
         public async Task<IActionResult> Index()
         {
             var request = new CheckBalanceRequest() { UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };

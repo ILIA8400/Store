@@ -8,6 +8,7 @@ using System.Security.Claims;
 
 namespace Store.Presentation.Controllers
 {
+    //[Authorize(Roles ="User")]
     public class BasketController : Controller
     {
         private readonly IMediator mediator;

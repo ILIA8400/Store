@@ -4,6 +4,7 @@ using Store.BL.Features.Brand.Request.Queries;
 
 namespace Store.Presentation.Controllers
 {
+
     public class BrandController : Controller
     {
         private readonly IMediator mediator;

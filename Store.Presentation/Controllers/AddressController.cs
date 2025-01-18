@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace Store.Presentation.Controllers
 {
+    //[Authorize(Roles ="User")]
     public class AddressController : Controller
     {
         private readonly IMediator mediator;
