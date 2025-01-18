@@ -63,11 +63,11 @@ namespace Store.DAL.Migrations
                 {
                     DiscountId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DiscountName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DiscountName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiscountCeiling = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DiscountCeiling = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     DiscountPercentage = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
@@ -103,6 +103,7 @@ namespace Store.DAL.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DiscountId = table.Column<int>(type: "int", nullable: true),
                     DefaultAddressId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -140,7 +141,8 @@ namespace Store.DAL.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     BrandId = table.Column<int>(type: "int", nullable: false),
                     AvaillableQuentity = table.Column<int>(type: "int", nullable: false),
-                    DiscountId = table.Column<int>(type: "int", nullable: true)
+                    DiscountId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

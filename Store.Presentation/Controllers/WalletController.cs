@@ -21,6 +21,11 @@ namespace Store.Presentation.Controllers
             return View();
         }
 
+        public IActionResult ContinueShopping()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> SuccessfulPurchase([Bind("DiscountedAmount", "Discount")]CheckBalanceResponse checkBalanceResponse)
         {
             var request = new DecreasingBalanceCommandRequest()
@@ -45,6 +50,20 @@ namespace Store.Presentation.Controllers
             await mediator.Send(request);
             return RedirectToAction("Index","Home"); 
         }
+
+        // افزایش موجودی و برگشت به ادامه فرایند خرید
+        [HttpPost]
+        public async Task<IActionResult> IncreaseBalanceAndContinue([FromForm] decimal amount = 0)
+        {
+            var request = new IncreaseBalanceRequestCommand()
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                Amount = amount
+            };
+            await mediator.Send(request);
+            return RedirectToAction("Index", "Payment");
+        }
+
 
         // گرفتن موجودی کاربر
         public async Task<decimal> GetUserBalance()

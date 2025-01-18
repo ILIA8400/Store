@@ -46,6 +46,12 @@ namespace Store.Presentation.Controllers
         {
             try
             {
+                // تنها فرمی که ولیدیشن داره
+                if (!ModelState.IsValid)
+                {
+                    return View("Index", numberDto);
+                }
+
                 var request = new VerifyCodeRequest() { PhoneNumberDto = numberDto };
                 var response = await mediator.Send(request);
                 var uniqueKey = Guid.NewGuid().ToString();

@@ -1,4 +1,4 @@
-﻿@model PhoneNumberDto;
+﻿@model PhoneNumberDto
 
 <!-- Form -->
 <div class="container">
@@ -10,10 +10,15 @@
                 </div>
                 <div class="card-body">
                     <form asp-action="SendVerifyCode" asp-controller="Register" method="post">
+                       @*  <!-- Validation Summary -->
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div> *@
+
                         <div class="mb-3">
                             <label asp-for="PhoneNumber" class="form-label">شماره موبایل</label>
                             <input id="PhoneNumber" type="text" class="form-control" asp-for="PhoneNumber">
+                            <span asp-validation-for="PhoneNumber" class="text-danger mt-2"></span>
                         </div>
+
                         <div class="d-grid mb-3">
                             <button asp-action="SendVerifyCode" class="btn btn-outline-dark">ارسال کد تایید</button>
                         </div>
@@ -23,4 +28,3 @@
         </div>
     </div>
 </div>
-<!-- End Form -->

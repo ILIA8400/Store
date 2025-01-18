@@ -46,8 +46,17 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-danger" onclick="printWindow()">چاپ</button>
+                <button class="btn btn-danger print-button" onclick="printWindow()">چاپ</button>
             </div>
         </div>
     </div>
 </main>
+
+
+<script>
+    function printWindow(){
+        document.querySelector(".print-button").style.display = "none";
+        window.print();
+        document.querySelector(".print-button").style.display = "block";
+    }
+</script>

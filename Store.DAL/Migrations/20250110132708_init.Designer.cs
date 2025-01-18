@@ -12,7 +12,7 @@ using Store.DAL;
 namespace Store.DAL.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250109162358_init")]
+    [Migration("20250110132708_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -181,6 +181,9 @@ namespace Store.DAL.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -364,14 +367,12 @@ namespace Store.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiscountId"));
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("DiscountCeiling")
+                    b.Property<decimal?>("DiscountCeiling")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("DiscountName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("DiscountPercentage")
@@ -497,6 +498,9 @@ namespace Store.DAL.Migrations
 
                     b.Property<int?>("DiscountId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
